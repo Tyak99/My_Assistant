@@ -1,4 +1,4 @@
-
+import * as actionTypes from "../constants/actionTypes";
 
 const initialState = {
      thead: ["Name", "Country"],
@@ -33,5 +33,17 @@ const initialState = {
 }
 
 export const reducer = (state = initialState, action) => {
-    return state
+    switch(action.type) {
+      case actionTypes.ADD_EXPENSE:
+      const newExp = {
+        className: '',
+        data: [action.payload.name, action.payload.amount]
+      }
+        return {
+          ...state,
+          tbody: state.tbody.concat(newExp)
+        }
+      default:
+        return state
+    }
 }

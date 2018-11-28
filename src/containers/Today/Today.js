@@ -33,7 +33,7 @@ class Today extends Component {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {tbody.map((props, key) => {
+                                            {this.props.tbody.map((props, key) => {
                                                 return (
                                                     <tr key={key}>
                                                       {props.data.map((prop, key) => {
@@ -70,7 +70,8 @@ class Today extends Component {
 
 const mapStateToProps = state => {
     return {
-        theader: state.thead
+        theader: state.thead,
+        tbody: state.tbody
     }
 }
 
