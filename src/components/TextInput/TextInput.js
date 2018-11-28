@@ -13,7 +13,7 @@ const TextInput = ({Aname, Aamount, submitH}) => {
                     <Input placeholder="Amount" type="number" step="1" onChange = {Aamount}/>
                 <InputGroupAddon addonType="append">.00</InputGroupAddon>
             </InputGroup>
-            <Button color="primary" round onClick = {submitH}>Rounded</Button>
+            <Button color="primary" round onClick = {submitH}>Submit</Button>
         </div>
     )
 }

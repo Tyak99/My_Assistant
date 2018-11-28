@@ -1,49 +1,52 @@
 import * as actionTypes from "../constants/actionTypes";
 
+
 const initialState = {
-     thead: ["Name", "Country"],
-     tbody: [
-        {
-          className: "table-success",
-          data: ["Dakota Rice",  "$36,738"]
-        },
-        {
-          className: "",
-          data: ["Minerva Hooper",  "$23,789"]
-        },
-        {
-          className: "table-info",
-          data: ["Sage Rodriguez",  "$56,142"]
-        },
-        {
-          className: "",
-          data: ["Philip Chaney",  "$38,735"]
-        },
-        {
-          className: "table-danger",
-          data: ["Doris Greene",  "$63,542"]
-        },
-        { className: "", data: ["Mason Porter", "$78,615"] },
-        {
-          className: "table-warning",
-          data: ["Jon Porter",  "$98,615"]
-        }
-      ],
-      
+  thead: ["Name", "Amount"],
+  tbody: null,
+  error: null,
+  loading: false,
 }
 
+
 export const reducer = (state = initialState, action) => {
-    switch(action.type) {
-      case actionTypes.ADD_EXPENSE:
-      const newExp = {
-        className: '',
-        data: [action.payload.name, action.payload.amount]
+  switch(action.type) {
+    case actionTypes.GET_EXPENSE_START: 
+      return {
+        ...state,
+        loading: true
       }
-        return {
-          ...state,
-          tbody: state.tbody.concat(newExp)
-        }
-      default:
-        return state
-    }
+    case actionTypes.GET_EXPENSE_SUCCESS:
+      const result = Object.values(action.data)
+      return {
+        ...state,
+        loading: false,
+        tbody: result, 
+      }
+    case actionTypes.GET_EXPENSE_FAILED:
+      return {
+        ...state,
+        loading: false,
+        error: action.error,
+        
+      }
+    case actionTypes.ADD_EXPENSE_START:
+      return {
+        ...state,
+        loading: true,
+      }
+    case actionTypes.ADD_EXPENSE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+      }
+    case actionTypes.ADD_EXPENSE_FAILED:
+      return {
+        ...state,
+        loading: false,
+        error: action.error
+      }
+    default: 
+      return state
+  }
 }
