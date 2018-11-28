@@ -4,9 +4,28 @@ import { PanelHeader, CardData } from "components";
 import AddT from "../Add/Add";
 import { connect } from 'react-redux';
 import { thead, tbody } from "variables/general";
+import * as actionCreators from "../../store/actions/actions";
 
 class Today extends Component {
+    componentDidMount() {
+        if(this.props.tbody !== null) {
+            return
+        } else {
+            this.props.getExp()
+        }
+    }
     render() {
+        let data = null
+        if(this.props.tbody) {
+            data = this.props.tbody.map((prop) => {
+               return (
+                <tr> 
+                    <td> {prop.name} </td>
+                    <td className='text-right'> {prop.amount}</td>
+                </tr>
+               ) 
+            })
+        }
         return (
             <div>
                  <PanelHeader size="sm"/>
@@ -33,21 +52,7 @@ class Today extends Component {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {this.props.tbody.map((props, key) => {
-                                                return (
-                                                    <tr key={key}>
-                                                      {props.data.map((prop, key) => {
-                                                        if (key === thead.length - 1)
-                                                          return (
-                                                            <td key={key} className="text-right">
-                                                              {prop}
-                                                            </td>
-                                                          );
-                                                        return <td key={key}>{prop}</td>;
-                                                      })}
-                                                    </tr>
-                                                );
-                                            })}
+                                           {data}
                                         </tbody>
                                     </Table>
                                 </CardBody>
@@ -75,4 +80,10 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(Today);
+const mapDispatchToProps = dispatch => {
+    return {
+        getExp: () => dispatch(actionCreators.getExp())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Today);

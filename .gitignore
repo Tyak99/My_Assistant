@@ -31,3 +31,5 @@ ISSUE_TEMPLATE\.md
 CHANGELOG\.md
 
 Documentation/
+
+src/variables/general\.jsx

@@ -1,4 +1,3 @@
-import Dashboard from "views/Dashboard/Dashboard.jsx";
 import Notifications from "views/Notifications/Notifications.jsx";
 import Icons from "views/Icons/Icons.jsx";
 import Welcome from "../containers/Welcome/Welcome";

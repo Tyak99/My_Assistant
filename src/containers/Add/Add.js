@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { TextInput } from 'components';
-import { addExp } from "../../store/actions/actions";
+import * as actionCreators from "../../store/actions/actions";
 
 class AddT extends Component {
     state = {
@@ -19,7 +19,9 @@ class AddT extends Component {
         if(this.state.name.length <= 0 || this.state.amount.length <= 0) {
             return 
         }
-        this.props.submit(this.state.name, `# ${this.state.amount}`)
+        //submit the entry
+        this.props.submit(this.state.name, `#${this.state.amount}`)
+        // im trying to clear the text field here
         this.setState({name: ''})
         this.setState({amount: ''})
     }
@@ -37,7 +39,7 @@ class AddT extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        submit: (name, amount) => dispatch(addExp(name, amount))
+        submit: (name, amount) => dispatch(actionCreators.add(name, amount)),
     }
 }
 export default connect(null, mapDispatchToProps)(AddT);
