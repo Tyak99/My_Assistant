@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { TextInput } from 'components';
+import { TextInput, Spinner } from 'components';
 import * as actionCreators from "../../store/actions/actions";
 
 class AddT extends Component {
@@ -26,20 +26,29 @@ class AddT extends Component {
         this.setState({amount: ''})
     }
     render() {
+        let Display = <TextInput
+        submitH = {this.onSubmitHandler}
+        Aamount = {this.onExpAmt}
+        Aname = {this.onExpName}/>
+        if(this.props.Addloading) {
+            Display = <Spinner/>
+        }
         return (
             <div>
-                <TextInput
-                    submitH = {this.onSubmitHandler}
-                    Aamount = {this.onExpAmt}
-                    Aname = {this.onExpName}/>
+                {Display}
             </div>
         )
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        Addloading: state.Addloading
+    }
+}
 const mapDispatchToProps = (dispatch) => {
     return {
         submit: (name, amount) => dispatch(actionCreators.add(name, amount)),
     }
 }
-export default connect(null, mapDispatchToProps)(AddT);
+export default connect(mapStateToProps, mapDispatchToProps)(AddT);

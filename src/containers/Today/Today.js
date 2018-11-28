@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Row, Col, Card, CardHeader, CardBody, CardTitle, Table } from "reactstrap";
-import { PanelHeader, CardData } from "components";
+import { PanelHeader, CardData, Spinner } from "components";
 import AddT from "../Add/Add";
 import { connect } from 'react-redux';
 import { thead, tbody } from "variables/general";
@@ -15,7 +15,7 @@ class Today extends Component {
         }
     }
     render() {
-        let data = null
+        let data = null;
         if(this.props.tbody) {
             data = this.props.tbody.map((prop) => {
                return (
@@ -76,7 +76,8 @@ class Today extends Component {
 const mapStateToProps = state => {
     return {
         theader: state.thead,
-        tbody: state.tbody
+        tbody: state.tbody,
+        loading: state.loading
     }
 }
 
