@@ -26,6 +26,8 @@ import Tasks from './Tasks/Tasks';
 
 import TextInput from './TextInput/TextInput';
 
+import Spinner from "./Spinner/Spinner";
+
 export {
     // CardElements
     CardAuthor,
@@ -55,4 +57,6 @@ export {
     Stats,
     // Tasks
     Tasks,
+    //Spinner
+    Spinner,
 };

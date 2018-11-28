@@ -6,6 +6,7 @@ const initialState = {
   tbody: null,
   error: null,
   loading: false,
+  Addloading: false,
 }
 
 
@@ -33,17 +34,17 @@ export const reducer = (state = initialState, action) => {
     case actionTypes.ADD_EXPENSE_START:
       return {
         ...state,
-        loading: true,
+        Addloading: true,
       }
     case actionTypes.ADD_EXPENSE_SUCCESS:
       return {
         ...state,
-        loading: false,
+        Addloading: false,
       }
     case actionTypes.ADD_EXPENSE_FAILED:
       return {
         ...state,
-        loading: false,
+        Addloading: false,
         error: action.error
       }
     default: 
