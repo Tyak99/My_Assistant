@@ -26,7 +26,7 @@ class RegularTables extends React.Component {
                   <CardTitle tag="h4">Simple Table</CardTitle>
                 </CardHeader>
                 <CardBody>
-                  <Table responsive>
+                  {/* <Table responsive>
                     <thead className="text-primary">
                       <tr>
                         {thead.map((prop, key) => {
@@ -99,7 +99,7 @@ class RegularTables extends React.Component {
                         );
                       })}
                     </tbody>
-                  </Table>
+                  </Table> */}
                 </CardBody>
               </Card>
             </Col>
