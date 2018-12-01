@@ -10,6 +10,12 @@ import UserPage from "views/UserPage/UserPage.jsx";
 
 var dashRoutes = [
   {
+    path: "/welcome",
+    name: "Welcome",
+    icon: "ui-1_bell-53",
+    component: Welcome
+  },
+  {
     path: "/dashboard",
     name: "Today",
     icon: "design_app",
@@ -17,12 +23,6 @@ var dashRoutes = [
   },
   { path: "/icons", name: "Icons", icon: "design_image", component: Icons },
   { path: "/maps", name: "Maps", icon: "location_map-big", component: Maps },
-  {
-    path: "/welcome",
-    name: "Welcome",
-    icon: "ui-1_bell-53",
-    component: Welcome
-  },
   {
     path: "/user-page",
     name: "User Profile",

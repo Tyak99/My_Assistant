@@ -28,6 +28,8 @@ import TextInput from './TextInput/TextInput';
 
 import Spinner from "./Spinner/Spinner";
 
+import Emoji from "./Emoji/Emoji";
+
 export {
     // CardElements
     CardAuthor,
@@ -59,4 +61,6 @@ export {
     Tasks,
     //Spinner
     Spinner,
+    //Emoji
+    Emoji,
 };

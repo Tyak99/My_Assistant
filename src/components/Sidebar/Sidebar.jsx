@@ -32,7 +32,7 @@ class Sidebar extends React.Component {
   }
   render() {
     return (
-      <div className="sidebar" data-color="black">
+      <div className="sidebar" data-color="blue">
         <div className="logo">
           <a
             href="https://www.creative-tim.com"
@@ -46,7 +46,7 @@ class Sidebar extends React.Component {
             href="https://www.creative-tim.com"
             className="simple-text logo-normal"
           >
-            Creative Tim
+            My Assistant
           </a>
         </div>
         <div className="sidebar-wrapper" ref="sidebar">
