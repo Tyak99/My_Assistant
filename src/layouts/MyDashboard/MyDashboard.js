@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Sidebar, Header } from "components";
 import { Route, Switch, Redirect } from "react-router-dom";
+import { connect } from 'react-redux';
 import PerfectScrollbar from "perfect-scrollbar";
 import dashboardRoutes from "routes/dashboard.jsx";
 
@@ -38,24 +39,42 @@ class MyDashboard extends Component {
     //     }
     //   }
     render() {
+        let route = (
+            <Switch>
+                <Route path = '/' exact component = {Icons}/>
+                <Route path = '/login' component = {Login}/>
+                <Redirect to = '/'/>
+            </Switch>
+        )
+        if(this.props.isAuthenticated) {
+            route = (
+                <Switch>
+                    <Route path ='/welcome' component = {Welcome}/>
+                    <Route path ='/dashboard' component = {Today}/>
+                    <Route path = '/' exact component = {Icons}/>
+                    <Route path = '/icons'component = {Icons}/>
+                    <Route path ='/extended-tables' component = {TableList}/>
+                    <Route path ='/typography' component = {Typography}/>
+                    <Redirect to = '/'/>
+                </Switch>
+            )
+        }
         return (
             <div className ='wrapper'>
                 <Sidebar {...this.props} routes={dashboardRoutes} />
                 <div className="main-panel" ref="mainPanel">
                 <Header {...this.props}/>
-                <Switch> 
-                  <Route path = '/' exact component = {Icons}/>
-                  <Route path ='/welcome' component = {Welcome}/>
-                  <Route path ='/dashboard' component = {Today}/>
-                  <Route path = '/icons'component = {Icons}/>
-                  <Route path ='/extended-tables' component = {TableList}/>
-                  <Route path ='/typography' component = {Typography}/>
-                </Switch>
+                {route}
             </div>
             </div>
         )
     }
 }
 
+const mapDispatchToProps = (state) => {
+    return {
+        isAuthenticated: state.auth.token !== null
+    }
+}
 
-export default MyDashboard
+export default connect(mapDispatchToProps)(MyDashboard);

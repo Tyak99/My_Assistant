@@ -7,7 +7,7 @@ export const checkAuthTimeout = (expiresIn) => {
     return dispatch => {
         setTimeout(() => {
             dispatch(logout())
-        }, expiresIn)
+        }, expiresIn * 1000)
     }
 }
 export const loginStart = () => {
