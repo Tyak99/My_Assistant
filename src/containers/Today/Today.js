@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Row, Col, Card, CardHeader, CardBody, CardTitle, Table } from "reactstrap";
 import { PanelHeader, CardData, Spinner } from "components";
+import Moment from 'react-moment';
+import moment from 'moment'
 import AddT from "../Add/Add";
 import { connect } from 'react-redux';
 import { thead, tbody } from "variables/general";
@@ -18,14 +20,24 @@ class Today extends Component {
         let data = null;
         if(this.props.tbody) {
             data = this.props.tbody.map((prop) => {
+                // const Today = moment().format("DD/MM/YYYY")
+                // let day = prop.createdAt
+                // if(prop.createdAt == Today) {
+                //     day = "Today"
+                // }
                return (
                 <tr> 
-                    <td> {prop.name} </td>
-                    <td className='text-right'> {prop.amount}</td>
+                    <td ><strong className = "h6">  {prop.value} </strong> 
+                        <br/> <span className="font-italic"> 
+                        {`'${prop.name}'`} </span> </td>
+                    <td className='text-right text-info'> {prop.amount} 
+                        <br/> <span className="font-italic badge badge-pill badge-secondary"> 
+                        Today </span> </td>
                 </tr>
                ) 
             })
         }
+        
         return (
             <div>
                  <PanelHeader size="sm"/>
@@ -34,7 +46,9 @@ class Today extends Component {
                             <Col md = {6} xs={12}>
                             <Card >
                                 <CardHeader>
-                                <CardTitle tag="h4">Simple Table</CardTitle>
+                                <CardTitle tag="h4">
+                                    Expenses
+                                </CardTitle>
                                 </CardHeader>
                                 <CardBody>
                                     <Table responsive>

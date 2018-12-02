@@ -2,9 +2,22 @@ import React from 'react';
 import { InputGroup, InputGroupAddon, Input } from "reactstrap";
 import {Button} from "components";
 
-const TextInput = ({Aname, Aamount, submitH}) => {
+const TextInput = ({Aname, Aamount, submitH, select}) => {
     return (
         <div> 
+            <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputSelect">Options</label>
+            </div>
+            <select class="custom-select" id="inputSelect"  onChange={select}>
+                <option>Choose...</option>
+                <option value="Food/Drinks">Food/Drinks</option>
+                <option value="Transport">Transport</option>
+                <option value="Subscription">Subscription</option>
+                <option value="Airtime">Airtime</option>
+                <option value="Miscellaneous">Miscellaneous</option>
+            </select>
+        </div>
             <InputGroup>
                 <Input placeholder="name" onChange = {Aname}/>
             </InputGroup>
