@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
 import { Row, Col, Card, CardHeader, CardBody } from "reactstrap";
 import { PanelHeader, CardData, Emoji } from "components";
 import "./Welcome.css";
@@ -29,8 +30,35 @@ class Welcome extends Component {
         ]
     }
     render() {
-        return (
+        let Display = (
             <div>
+                 <PanelHeader size="sm"/>
+                    <div className="content">
+                    <Row>
+                        <Col md = {8} xs={12}>
+                        <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
+                            <CardHeader>Good Morning</CardHeader>
+                            <hr className = "hrst"/>
+                            <CardBody>
+                               Welcome dear user, Please LogIn
+                            </CardBody>
+                        </Card>
+                        </Col>
+                        <Col md = {4} xs={12}>
+                        <Card>
+                            <CardHeader>Welcome Page</CardHeader>
+                            <CardBody>
+                            <div> In here i will mount all my welcome shitss </div>
+                            </CardBody>
+                        </Card>
+                        </Col>
+                    </Row>
+                    </div>
+            </div>
+        )
+        if(this.props.isAuthenticated) {
+            Display = (
+                <div>
                  <PanelHeader size="sm"/>
                     <div className="content">
                     <Row>
@@ -63,9 +91,14 @@ class Welcome extends Component {
                     </Row>
                     </div>
             </div>
-
-        )
+            )
+        }
+        return Display;
     }
 }
-
-export default Welcome;
+const mapStateToProps = state => {
+    return {
+        isAuthenticated: state.auth.token !== null
+    }
+}
+export default connect(mapStateToProps)(Welcome);

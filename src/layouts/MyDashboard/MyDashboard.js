@@ -20,30 +20,31 @@ import Login from "../../containers/Login/Login";
 var ps;
 
 class MyDashboard extends Component {
-    // componentDidMount() {
-    //     if (navigator.platform.indexOf("Win") > -1) {
-    //       ps = new PerfectScrollbar(this.refs.mainPanel);
-    //       document.body.classList.toggle("perfect-scrollbar-on");
-    //     }
-    //   }
-    //   componentWillUnmount() {
-    //     if (navigator.platform.indexOf("Win") > -1) {
-    //       ps.destroy();
-    //       document.body.classList.toggle("perfect-scrollbar-on");
-    //     }
-    //   }
-    //   componentDidUpdate(e) {
-    //     if (e.history.action === "PUSH") {
-    //       this.refs.mainPanel.scrollTop = 0;
-    //       document.scrollingElement.scrollTop = 0;
-    //     }
-    //   }
+    componentDidMount() {
+        if (navigator.platform.indexOf("Win") > -1) {
+          ps = new PerfectScrollbar(this.refs.mainPanel);
+          document.body.classList.toggle("perfect-scrollbar-on");
+        }
+      }
+      componentWillUnmount() {
+        if (navigator.platform.indexOf("Win") > -1) {
+          ps.destroy();
+          document.body.classList.toggle("perfect-scrollbar-on");
+        }
+      }
+      componentDidUpdate(e) {
+        if (e.history.action === "PUSH") {
+          this.refs.mainPanel.scrollTop = 0;
+          document.scrollingElement.scrollTop = 0;
+        }
+      }
     render() {
         let route = (
             <Switch>
                 <Route path = '/' exact component = {Icons}/>
+                <Route path ='/welcome' component = {Welcome}/>
                 <Route path = '/login' component = {Login}/>
-                <Redirect to = '/'/>
+                <Redirect to = '/welcome'/>
             </Switch>
         )
         if(this.props.isAuthenticated) {
@@ -55,7 +56,7 @@ class MyDashboard extends Component {
                     <Route path = '/icons'component = {Icons}/>
                     <Route path ='/extended-tables' component = {TableList}/>
                     <Route path ='/typography' component = {Typography}/>
-                    <Redirect to = '/'/>
+                    <Redirect to = '/welcome'/>
                 </Switch>
             )
         }
