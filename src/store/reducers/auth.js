@@ -4,6 +4,7 @@ const initialState = {
     loading: false,
     error: null,
     token: null,
+    id: null
 }
 
 export const auth = (state= initialState, action) => {
@@ -18,7 +19,8 @@ export const auth = (state= initialState, action) => {
                 ...state,
                 loading: false,
                 error: null,
-                token: action.token
+                token: action.token,
+                id: action.id
             }
         case actionTypes.LOGIN_FAILED:
             return {
@@ -26,6 +28,12 @@ export const auth = (state= initialState, action) => {
                 loading: false,
                 error: action.error,
                 token: null
+            }
+        case actionTypes.LOGOUT:
+            return {
+                ...state,
+                token: null,
+                id: null
             }
         default:
             return state

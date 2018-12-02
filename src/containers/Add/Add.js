@@ -27,7 +27,7 @@ class AddT extends Component {
         this.props.submit(this.state.name, `NGN ${this.state.amount}`, this.state.value)
         // im trying to clear the text field here
         this.setState({name: ''})
-        this.setState({amount: ''})
+        this.setState({amount: ''}) 
     }
     componentDidMount() {
         console.log("hii")
