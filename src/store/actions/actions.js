@@ -25,7 +25,7 @@ export const add = (name, amount) => {
     return dispatch => {
         const expense = {
             name: name,
-            amount: amount
+            amount: amount,
                 }
         dispatch(addStart())
         axios.post(ExpenseApiUrl, expense)
