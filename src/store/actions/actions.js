@@ -1,6 +1,7 @@
 import * as actionTypes from "../constants/actionTypes";
 import axios from 'axios';
 import { ExpenseApiUrl } from "variables/general";
+import moment from 'moment';
 
 
 
@@ -23,9 +24,11 @@ export const addExpFailed = (error) => {
 }
 export const add = (name, amount) => {
     return dispatch => {
+        
         const expense = {
             name: name,
             amount: amount,
+            createdAt: moment().format("DD/MM/YYYY")
                 }
         dispatch(addStart())
         axios.post(ExpenseApiUrl, expense)

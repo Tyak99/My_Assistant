@@ -20,7 +20,7 @@ class AddT extends Component {
             return 
         }
         //submit the entry
-        this.props.submit(this.state.name, `#${this.state.amount}`)
+        this.props.submit(this.state.name, `NGN ${this.state.amount}`)
         // im trying to clear the text field here
         this.setState({name: ''})
         this.setState({amount: ''})
