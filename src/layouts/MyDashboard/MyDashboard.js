@@ -18,6 +18,23 @@ import Login from "../../containers/Login/Login";
 
 
 var ps;
+let myRoutes = [
+    {
+      path: "/welcome",
+      name: "Welcome",
+      icon: "ui-1_bell-53",
+      component: Welcome
+    },
+    {
+      pro: true,
+      path: "/login",
+      name: "Login",
+      icon: "objects_spaceship",
+      component: Login
+    },
+  ];
+
+
 
 class MyDashboard extends Component {
     componentDidMount() {
@@ -39,6 +56,42 @@ class MyDashboard extends Component {
         }
       }
     render() {
+        if(this.props.isAuthenticated) {
+            myRoutes = [
+                {
+                    path: "/welcome",
+                    name: "Welcome",
+                    icon: "ui-1_bell-53",
+                    component: Welcome
+                  },
+                  {
+                    path: "/dashboard",
+                    name: "Today",
+                    icon: "design_app",
+                    component: Today
+                  },
+                  { path: "/icons", name: "Icons", icon: "design_image", component: Icons },
+                  {
+                    path: "/user-page",
+                    name: "User Profile",
+                    icon: "users_single-02",
+                    component: UserPage
+                  },
+                  {
+                    path: "/typography",
+                    name: "Typography",
+                    icon: "design-2_ruler-pencil",
+                    component: Typography
+                  },
+                  {
+                    pro: true,
+                    path: "/login",
+                    name: "Login",
+                    icon: "objects_spaceship",
+                    component: Login
+                  },
+            ]
+        }
         let route = (
             <Switch>
                 <Route path ='/welcome' component = {Welcome}/>
@@ -60,7 +113,7 @@ class MyDashboard extends Component {
         }
         return (
             <div className ='wrapper'>
-                <Sidebar {...this.props} routes={dashboardRoutes} />
+                <Sidebar {...this.props} routes={myRoutes} />
                 <div className="main-panel" ref="mainPanel">
                 <Header {...this.props}/>
                 {route}
@@ -70,10 +123,10 @@ class MyDashboard extends Component {
     }
 }
 
-const mapDispatchToProps = (state) => {
+const mapStateToProps = (state) => {
     return {
         isAuthenticated: state.auth.token !== null
     }
 }
 
-export default connect(mapDispatchToProps)(MyDashboard);
+export default connect(mapStateToProps)(MyDashboard);
