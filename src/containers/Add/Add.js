@@ -6,7 +6,8 @@ import * as actionCreators from "../../store/actions/actions";
 class AddT extends Component {
     state = {
         name: '',
-        amount: ''
+        amount: '',
+        value: 'Choose'
     }
 
     onExpName = (e) => {
@@ -14,6 +15,9 @@ class AddT extends Component {
     }
     onExpAmt = (e) => {
         this.setState({amount: e.target.value})
+    }
+    onSelectName = (e) => {
+        this.setState({value: e.target.value})
     }
     onSubmitHandler = () => {
         if(this.state.name.length <= 0 || this.state.amount.length <= 0) {
@@ -25,8 +29,17 @@ class AddT extends Component {
         this.setState({name: ''})
         this.setState({amount: ''})
     }
+    componentDidMount() {
+        console.log("hii")
+        console.log(this.state.value)
+    }
+    componentDidUpdate() {
+        console.log("update")
+        console.log(this.state.value)
+    }
     render() {
         let Display = <TextInput
+        select = {this.onSelectName}
         submitH = {this.onSubmitHandler}
         Aamount = {this.onExpAmt}
         Aname = {this.onExpName}/>
