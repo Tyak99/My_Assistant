@@ -27,7 +27,9 @@ class Today extends Component {
                 // }
                return (
                 <tr> 
-                    <td className = 'h6'><strong> {prop.name} </strong> </td>
+                    <td ><strong className = "h6">  {prop.value} </strong> 
+                        <br/> <span className="font-italic"> 
+                        {`'${prop.name}'`} </span> </td>
                     <td className='text-right text-info'> {prop.amount} 
                         <br/> <span className="font-italic badge badge-pill badge-secondary"> 
                         Today </span> </td>

@@ -20,11 +20,11 @@ class AddT extends Component {
         this.setState({value: e.target.value})
     }
     onSubmitHandler = () => {
-        if(this.state.name.length <= 0 || this.state.amount.length <= 0) {
+        if(this.state.name.length <= 0 || this.state.amount.length <= 0 || this.state.value == 'Choose') {
             return 
         }
         //submit the entry
-        this.props.submit(this.state.name, `NGN ${this.state.amount}`)
+        this.props.submit(this.state.name, `NGN ${this.state.amount}`, this.state.value)
         // im trying to clear the text field here
         this.setState({name: ''})
         this.setState({amount: ''})
@@ -34,7 +34,6 @@ class AddT extends Component {
         console.log(this.state.value)
     }
     componentDidUpdate() {
-        console.log("update")
         console.log(this.state.value)
     }
     render() {
@@ -56,12 +55,12 @@ class AddT extends Component {
 
 const mapStateToProps = state => {
     return {
-        Addloading: state.Addloading
+        Addloading: state.exp.Addloading
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        submit: (name, amount) => dispatch(actionCreators.add(name, amount)),
+        submit: (name, amount, value) => dispatch(actionCreators.add(name, amount, value)),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(AddT);

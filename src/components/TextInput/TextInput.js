@@ -13,9 +13,11 @@ const TextInput = ({Aname, Aamount, submitH, select}) => {
                 <option>Choose...</option>
                 <option value="Food/Drinks">Food/Drinks</option>
                 <option value="Transport">Transport</option>
-                <option value="Three">Three</option>
+                <option value="Subscription">Subscription</option>
+                <option value="Airtime">Airtime</option>
+                <option value="Miscellaneous">Miscellaneous</option>
             </select>
-            </div>
+        </div>
             <InputGroup>
                 <Input placeholder="name" onChange = {Aname}/>
             </InputGroup>
