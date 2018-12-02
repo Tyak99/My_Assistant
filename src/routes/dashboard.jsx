@@ -7,6 +7,7 @@ import TableList from "views/TableList/TableList.jsx";
 import Maps from "views/Maps/Maps.jsx";
 import Upgrade from "views/Upgrade/Upgrade.jsx";
 import UserPage from "views/UserPage/UserPage.jsx";
+import Login from "../containers/Login/Login";
 
 var dashRoutes = [
   {
@@ -43,10 +44,10 @@ var dashRoutes = [
   },
   {
     pro: true,
-    path: "/upgrade",
-    name: "Upgrade to PRO",
+    path: "/login",
+    name: "Login",
     icon: "objects_spaceship",
-    component: Upgrade
+    component: Login
   },
   { redirect: true, path: "/", pathTo: "/dashboard", name: "Dashboard" }
 ];

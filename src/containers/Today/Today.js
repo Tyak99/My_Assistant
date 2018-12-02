@@ -75,9 +75,9 @@ class Today extends Component {
 
 const mapStateToProps = state => {
     return {
-        theader: state.thead,
-        tbody: state.tbody,
-        loading: state.loading
+        theader: state.exp.thead,
+        tbody: state.exp.tbody,
+        loading: state.exp.loading
     }
 }
 
