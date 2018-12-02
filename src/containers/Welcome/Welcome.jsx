@@ -30,7 +30,29 @@ class Welcome extends Component {
         ]
     }
     render() {
+
         let Display = (
+            <CardBody>
+              Welcome to Your Assistant, Please log in
+            </CardBody>
+        )
+        if(this.props.isAuthenticated) {
+            Display = (
+                            <CardBody>
+                                {this.state.datas.map(data => {
+                                     return <CardData
+                                            icon = {data.icon}
+                                            name = {data.name}
+                                            value = {data.value}/>
+                                })}
+                                <Emoji/>
+                                {/* {this.state.emojis.map(emoji => {
+                                    return <Emo/>
+                                })} */}
+                            </CardBody>
+            )
+        }
+        return (
             <div>
                  <PanelHeader size="sm"/>
                     <div className="content">
@@ -39,9 +61,7 @@ class Welcome extends Component {
                         <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
                             <CardHeader>Good Morning</CardHeader>
                             <hr className = "hrst"/>
-                            <CardBody>
-                               Welcome dear user, Please LogIn
-                            </CardBody>
+                           {Display}
                         </Card>
                         </Col>
                         <Col md = {4} xs={12}>
@@ -56,44 +76,6 @@ class Welcome extends Component {
                     </div>
             </div>
         )
-        if(this.props.isAuthenticated) {
-            Display = (
-                <div>
-                 <PanelHeader size="sm"/>
-                    <div className="content">
-                    <Row>
-                        <Col md = {8} xs={12}>
-                        <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
-                            <CardHeader>Good Morning</CardHeader>
-                            <hr className = "hrst"/>
-                            <CardBody>
-                                {this.state.datas.map(data => {
-                                     return <CardData
-                                            icon = {data.icon}
-                                            name = {data.name}
-                                            value = {data.value}/>
-                                })}
-                                <Emoji/>
-                                {/* {this.state.emojis.map(emoji => {
-                                    return <Emo/>
-                                })} */}
-                            </CardBody>
-                        </Card>
-                        </Col>
-                        <Col md = {4} xs={12}>
-                        <Card>
-                            <CardHeader>Welcome Page</CardHeader>
-                            <CardBody>
-                            <div> In here i will mount all my welcome shitss </div>
-                            </CardBody>
-                        </Card>
-                        </Col>
-                    </Row>
-                    </div>
-            </div>
-            )
-        }
-        return Display;
     }
 }
 const mapStateToProps = state => {

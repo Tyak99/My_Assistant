@@ -41,7 +41,6 @@ class MyDashboard extends Component {
     render() {
         let route = (
             <Switch>
-                <Route path = '/' exact component = {Icons}/>
                 <Route path ='/welcome' component = {Welcome}/>
                 <Route path = '/login' component = {Login}/>
                 <Redirect to = '/welcome'/>
@@ -52,7 +51,6 @@ class MyDashboard extends Component {
                 <Switch>
                     <Route path ='/welcome' component = {Welcome}/>
                     <Route path ='/dashboard' component = {Today}/>
-                    <Route path = '/' exact component = {Icons}/>
                     <Route path = '/icons'component = {Icons}/>
                     <Route path ='/extended-tables' component = {TableList}/>
                     <Route path ='/typography' component = {Typography}/>

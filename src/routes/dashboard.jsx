@@ -23,7 +23,6 @@ var dashRoutes = [
     component: Today
   },
   { path: "/icons", name: "Icons", icon: "design_image", component: Icons },
-  { path: "/maps", name: "Maps", icon: "location_map-big", component: Maps },
   {
     path: "/user-page",
     name: "User Profile",
