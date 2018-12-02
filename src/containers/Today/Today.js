@@ -17,21 +17,20 @@ class Today extends Component {
         }
     }
     render() {
-        const dateToFormat = new Date()
         let data = null;
         if(this.props.tbody) {
             data = this.props.tbody.map((prop) => {
-                const Today = moment().format("DD/MM/YYYY")
-                let day = prop.createdAt
-                if(prop.createdAt == Today) {
-                    day = "Today"
-                }
+                // const Today = moment().format("DD/MM/YYYY")
+                // let day = prop.createdAt
+                // if(prop.createdAt == Today) {
+                //     day = "Today"
+                // }
                return (
                 <tr> 
                     <td className = 'h6'><strong> {prop.name} </strong> </td>
                     <td className='text-right text-info'> {prop.amount} 
                         <br/> <span className="font-italic badge badge-pill badge-secondary"> 
-                        {day} </span> </td>
+                        Today </span> </td>
                 </tr>
                ) 
             })
@@ -47,7 +46,6 @@ class Today extends Component {
                                 <CardHeader>
                                 <CardTitle tag="h4">
                                     Expenses
-                                    <Moment date={dateToFormat} format="DD/MM/YYYY"/>
                                 </CardTitle>
                                 </CardHeader>
                                 <CardBody>
