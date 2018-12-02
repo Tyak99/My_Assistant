@@ -4,6 +4,18 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import PerfectScrollbar from "perfect-scrollbar";
 import dashboardRoutes from "routes/dashboard.jsx";
 
+
+import Icons from "views/Icons/Icons.jsx";
+import Welcome from "../../containers/Welcome/Welcome";
+import Today from "../../containers/Today/Today";
+import Typography from "views/Typography/Typography.jsx";
+import TableList from "views/TableList/TableList.jsx";
+import Maps from "views/Maps/Maps.jsx";
+import Upgrade from "views/Upgrade/Upgrade.jsx";
+import UserPage from "views/UserPage/UserPage.jsx";
+import Login from "../../containers/Login/Login";
+
+
 var ps;
 
 class MyDashboard extends Component {
@@ -31,29 +43,19 @@ class MyDashboard extends Component {
                 <Sidebar {...this.props} routes={dashboardRoutes} />
                 <div className="main-panel" ref="mainPanel">
                 <Header {...this.props}/>
-                <Switch>
-                {dashboardRoutes.map((prop, key) => {
-              if (prop.collapse) {
-                return prop.views.map((prop2, key2) => {
-                  return (
-                    <Route
-                      path={prop2.path}
-                      component={prop2.component}
-                      key={key2}
-                    />
-                  );
-                });
-              }
-              if (prop.redirect)
-                return <Redirect from={prop.path} to={prop.pathTo} key={key} />;
-              return (
-                <Route path={prop.path} component={prop.component} key={key} />
-              );
-            })}
-          </Switch>
+                <Switch> 
+                  <Route path = '/' exact component = {Icons}/>
+                  <Route path ='/welcome' component = {Welcome}/>
+                  <Route path ='/dashboard' component = {Today}/>
+                  <Route path = '/icons'component = {Icons}/>
+                  <Route path ='/extended-tables' component = {TableList}/>
+                  <Route path ='/typography' component = {Typography}/>
+                </Switch>
             </div>
             </div>
         )
     }
 }
+
+
 export default MyDashboard

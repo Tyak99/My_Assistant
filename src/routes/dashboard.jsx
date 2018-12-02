@@ -49,6 +49,5 @@ var dashRoutes = [
     icon: "objects_spaceship",
     component: Login
   },
-  { redirect: true, path: "/", pathTo: "/dashboard", name: "Dashboard" }
 ];
 export default dashRoutes;
