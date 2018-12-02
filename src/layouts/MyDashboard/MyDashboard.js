@@ -4,6 +4,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import { connect } from 'react-redux';
 import PerfectScrollbar from "perfect-scrollbar";
 import dashboardRoutes from "routes/dashboard.jsx";
+import * as authActions from '../../store/actions/auth'
 
 
 import Icons from "views/Icons/Icons.jsx";
@@ -15,6 +16,7 @@ import Maps from "views/Maps/Maps.jsx";
 import Upgrade from "views/Upgrade/Upgrade.jsx";
 import UserPage from "views/UserPage/UserPage.jsx";
 import Login from "../../containers/Login/Login";
+import { checkAuthState } from "../../store/actions/auth";
 
 
 var ps;
@@ -37,6 +39,9 @@ let myRoutes = [
 
 
 class MyDashboard extends Component {
+    componentWillMount() {
+        this.props.checkAuth();
+    }
     componentDidMount() {
         if (navigator.platform.indexOf("Win") > -1) {
           ps = new PerfectScrollbar(this.refs.mainPanel);
@@ -129,4 +134,11 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(MyDashboard);
+const mapDispatchToProps = dispatch => {
+    return {
+        logout: () => dispatch(authActions.logout()),
+        checkAuth: () => dispatch(authActions.checkAuthState())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyDashboard);

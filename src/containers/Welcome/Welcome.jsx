@@ -38,19 +38,16 @@ class Welcome extends Component {
         )
         if(this.props.isAuthenticated) {
             Display = (
-                            <CardBody>
-                                {this.state.datas.map(data => {
-                                     return <CardData
-                                            icon = {data.icon}
-                                            name = {data.name}
-                                            value = {data.value}/>
+                    <CardBody>
+                        {this.state.datas.map(data => {
+                            return <CardData
+                            icon = {data.icon}
+                            name = {data.name}
+                            value = {data.value}/>
                                 })}
-                                <Emoji/>
-                                {/* {this.state.emojis.map(emoji => {
-                                    return <Emo/>
-                                })} */}
-                            </CardBody>
-            )
+                        <Emoji/>
+                    </CardBody>
+                )
         }
         return (
             <div>

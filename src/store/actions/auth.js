@@ -30,6 +30,8 @@ export const loginFailed = (error) => {
 }
 
 export const logout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('id');
     return {
         type: actionTypes.LOGOUT
     }
@@ -58,5 +60,17 @@ export const login = (email, password) => {
             console.log(error.response.data.error.message)
             dispatch(loginFailed(error.response.data.error.message))
         })
+    }
+}
+
+export const checkAuthState = () => {
+    return dispatch => {
+        const token = localStorage.getItem('token');
+        const id = localStorage.getItem('id');
+        if(!token || !id) {
+            dispatch(logout())
+        } else {
+            dispatch(loginSuccess(token, id))
+        }
     }
 }
