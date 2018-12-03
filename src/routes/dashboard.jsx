@@ -23,7 +23,6 @@ var dashRoutes = [
     component: Today
   },
   { path: "/icons", name: "Icons", icon: "design_image", component: Icons },
-  { path: "/maps", name: "Maps", icon: "location_map-big", component: Maps },
   {
     path: "/user-page",
     name: "User Profile",
@@ -49,6 +48,5 @@ var dashRoutes = [
     icon: "objects_spaceship",
     component: Login
   },
-  { redirect: true, path: "/", pathTo: "/dashboard", name: "Dashboard" }
 ];
 export default dashRoutes;

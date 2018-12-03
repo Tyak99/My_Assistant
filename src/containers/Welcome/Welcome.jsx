@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
 import { Row, Col, Card, CardHeader, CardBody } from "reactstrap";
 import { PanelHeader, CardData, Emoji } from "components";
 import "./Welcome.css";
@@ -29,6 +30,25 @@ class Welcome extends Component {
         ]
     }
     render() {
+
+        let Display = (
+            <CardBody>
+              Welcome to Your Assistant, Please log in
+            </CardBody>
+        )
+        if(this.props.isAuthenticated) {
+            Display = (
+                    <CardBody>
+                        {this.state.datas.map(data => {
+                            return <CardData
+                            icon = {data.icon}
+                            name = {data.name}
+                            value = {data.value}/>
+                                })}
+                        <Emoji/>
+                    </CardBody>
+                )
+        }
         return (
             <div>
                  <PanelHeader size="sm"/>
@@ -38,18 +58,7 @@ class Welcome extends Component {
                         <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
                             <CardHeader>Good Morning</CardHeader>
                             <hr className = "hrst"/>
-                            <CardBody>
-                                {this.state.datas.map(data => {
-                                     return <CardData
-                                            icon = {data.icon}
-                                            name = {data.name}
-                                            value = {data.value}/>
-                                })}
-                                <Emoji/>
-                                {/* {this.state.emojis.map(emoji => {
-                                    return <Emo/>
-                                })} */}
-                            </CardBody>
+                           {Display}
                         </Card>
                         </Col>
                         <Col md = {4} xs={12}>
@@ -63,9 +72,12 @@ class Welcome extends Component {
                     </Row>
                     </div>
             </div>
-
         )
     }
 }
-
-export default Welcome;
+const mapStateToProps = state => {
+    return {
+        isAuthenticated: state.auth.token !== null
+    }
+}
+export default connect(mapStateToProps)(Welcome);
