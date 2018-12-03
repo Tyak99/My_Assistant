@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Sidebar, Header } from "components";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import { connect } from 'react-redux';
 import PerfectScrollbar from "perfect-scrollbar";
 import dashboardRoutes from "routes/dashboard.jsx";
@@ -38,7 +38,7 @@ let myRoutes = [
 
 
 class MyDashboard extends Component {
-    componentWillMount() {
+    componentDidMount() {
         this.props.checkAuth();
     }
     componentDidMount() {
@@ -87,13 +87,6 @@ class MyDashboard extends Component {
                     icon: "design-2_ruler-pencil",
                     component: Typography
                   },
-                  {
-                    pro: true,
-                    path: "/login",
-                    name: "Login",
-                    icon: "objects_spaceship",
-                    component: Login
-                  },
             ]
         }
         let route = (
@@ -119,7 +112,7 @@ class MyDashboard extends Component {
             <div className ='wrapper'>
                 <Sidebar {...this.props} routes={myRoutes} />
                 <div className="main-panel" ref="mainPanel">
-                <Header {...this.props} logout = {this.props.logout}/>
+                <Header {...this.props}/>
                 {route}
             </div>
             </div>
@@ -140,4 +133,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyDashboard);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MyDashboard));

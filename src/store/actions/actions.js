@@ -29,6 +29,7 @@ export const add = (name, amount, value) => {
             name: name,
             amount: amount,
             value: value,
+            timestamp: new Date().getTime(),
             createdAt: moment().format("DD/MM/YYYY")
                 }
         dispatch(addStart())

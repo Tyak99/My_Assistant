@@ -6,27 +6,30 @@ import "./Welcome.css";
 class Welcome extends Component {
     state = {
         datas: [
-            {name: "Current Date", 
+            {name: "Current Date",
+             id: 1, 
              value: new Date().toDateString(), 
              icon: <span style={{color:'tomato'}}> 
-             <i class="fas fa-calendar-alt fa-2x"></i> 
+             <i className="fas fa-calendar-alt fa-2x"></i> 
              </span>},
-            {name: "Your Current Location", 
+            {name: "Your Current Location",
+             id: 2,
              value: "London, UK", 
              icon: <span style={{color:'yellow'}}>
-             <i class="fa fa-location-arrow fa-2x">
+             <i className="fa fa-location-arrow fa-2x">
              </i></span>},
             {name: "Temperature in your area", 
              value: '10 deg', 
+             id: 3,
              icon: <span style={{color:'blue'}}>
-             <i class="fas fa-temperature-high fa-2x">
+             <i className="fas fa-temperature-high fa-2x">
              </i></span>}  
         ],
         emojis: [
-            {symbol: <i class="fa fa-smile-wink fa-4x"></i> , label: "grinning face"},
-            {symbol: <i class="fa fa-smile-wink fa-4x"></i> , label: "grinning face"},
-            {symbol: <i class="fa fa-smile-wink fa-4x"></i> , label: "grinning face"},
-            {symbol: <i class="fa fa-smile-wink fa-4x"></i> , label: "grinning face"},
+            {symbol: <i className="fa fa-smile-wink fa-4x"></i> , label: "grinning face"},
+            {symbol: <i className="fa fa-smile-wink fa-4x"></i> , label: "grinning face"},
+            {symbol: <i className="fa fa-smile-wink fa-4x"></i> , label: "grinning face"},
+            {symbol: <i className="fa fa-smile-wink fa-4x"></i> , label: "grinning face"},
         ]
     }
     render() {
@@ -41,6 +44,7 @@ class Welcome extends Component {
                     <CardBody>
                         {this.state.datas.map(data => {
                             return <CardData
+                            key = {data.id}
                             icon = {data.icon}
                             name = {data.name}
                             value = {data.value}/>
