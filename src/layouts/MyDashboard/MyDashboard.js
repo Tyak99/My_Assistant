@@ -16,7 +16,6 @@ import Maps from "views/Maps/Maps.jsx";
 import Upgrade from "views/Upgrade/Upgrade.jsx";
 import UserPage from "views/UserPage/UserPage.jsx";
 import Login from "../../containers/Login/Login";
-import { checkAuthState } from "../../store/actions/auth";
 
 
 var ps;
@@ -120,7 +119,7 @@ class MyDashboard extends Component {
             <div className ='wrapper'>
                 <Sidebar {...this.props} routes={myRoutes} />
                 <div className="main-panel" ref="mainPanel">
-                <Header {...this.props}/>
+                <Header {...this.props} logout = {this.props.logout}/>
                 {route}
             </div>
             </div>
