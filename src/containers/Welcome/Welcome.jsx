@@ -26,12 +26,6 @@ class Welcome extends Component {
              <i className="fas fa-temperature-high fa-2x">
              </i></span>}  
         ],
-        emojis: [
-            {symbol: <i className="fa fa-smile-wink fa-4x"></i> , label: "grinning face"},
-            {symbol: <i className="fa fa-smile-wink fa-4x"></i> , label: "grinning face"},
-            {symbol: <i className="fa fa-smile-wink fa-4x"></i> , label: "grinning face"},
-            {symbol: <i className="fa fa-smile-wink fa-4x"></i> , label: "grinning face"},
-        ]
     }
     componentDidMount() {
         this.props.quote();
@@ -64,7 +58,7 @@ class Welcome extends Component {
                     <Row>
                         <Col md = {8} xs={12}>
                         <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
-                            <CardHeader>Good Morning</CardHeader>
+                            <CardHeader>Hello, Good Morning</CardHeader>
                             <hr className = "hrst"/>
                            {Display}
                         </Card>
