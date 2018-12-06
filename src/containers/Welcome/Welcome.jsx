@@ -7,12 +7,12 @@ import * as actions from '../../store/actions/quotes'
 class Welcome extends Component {
     state = {
         datas: [
-            {name: "Current Date",
-             id: 1, 
-             value: new Date().toDateString(), 
-             icon: <span style={{color:'tomato'}}> 
-             <i className="fas fa-calendar-alt fa-2x"></i> 
-             </span>},
+            // {name: "Current Date",
+            //  id: 1, 
+            //  value: new Date().toDateString(), 
+            //  icon: <span style={{color:'tomato'}}> 
+            //  <i className="fas fa-calendar-alt fa-2x"></i> 
+            //  </span>},
             {name: "Your Current Location",
              id: 2,
              value: "London, UK", 
