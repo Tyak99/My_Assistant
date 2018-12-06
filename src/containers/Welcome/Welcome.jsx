@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Row, Col, Card, CardHeader, CardBody } from "reactstrap";
 import { PanelHeader, CardData, Emoji } from "components";
 import "./Welcome.css";
+import * as actions from '../../store/actions/quotes'
 class Welcome extends Component {
     state = {
         datas: [
@@ -31,6 +32,9 @@ class Welcome extends Component {
             {symbol: <i className="fa fa-smile-wink fa-4x"></i> , label: "grinning face"},
             {symbol: <i className="fa fa-smile-wink fa-4x"></i> , label: "grinning face"},
         ]
+    }
+    componentDidMount() {
+        this.props.quote();
     }
     render() {
 
@@ -67,9 +71,15 @@ class Welcome extends Component {
                         </Col>
                         <Col md = {4} xs={12}>
                         <Card>
-                            <CardHeader>Welcome Page</CardHeader>
+                            <CardHeader>Quotes</CardHeader>
                             <CardBody>
-                            <div> In here i will mount all my welcome shitss </div>
+                            <div>
+                                <h2> {this.props.qod.title} </h2>
+                                <blockquote class="blockquote">
+                                    <p class="mb-0">{this.props.qod.quote}</p>
+                                    <footer class="blockquote-footer">{this.props.qod.author}</footer>
+                                </blockquote>
+                            </div>
                             </CardBody>
                         </Card>
                         </Col>
@@ -81,7 +91,13 @@ class Welcome extends Component {
 }
 const mapStateToProps = state => {
     return {
-        isAuthenticated: state.auth.token !== null
+        isAuthenticated: state.auth.token !== null,
+        qod: state.quote.qod
     }
 }
-export default connect(mapStateToProps)(Welcome);
+const mapDispatchToProps = dispatch => {
+    return {
+        quote: () => dispatch(actions.quote())
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Welcome);

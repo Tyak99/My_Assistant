@@ -19,3 +19,5 @@ export const LOGIN_FAILED = 'LOGIN_FAILED';
 export const LOGOUT = 'LOGOUT'
 
 export const CHECK_AUTH_STATUS = 'CHECK_AUTH_STATUS';
+
+export const GET_QUOTE = 'GET_QUOTE'

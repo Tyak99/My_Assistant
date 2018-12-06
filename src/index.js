@@ -6,6 +6,7 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import {expense } from "./store/reducers/expense";
 import { auth } from './store/reducers/auth';
+import { quote } from './store/reducers/quote';
 // import {reducer} from "./store/reducers/reducer";
 import thunk from 'redux-thunk';
 
@@ -18,7 +19,8 @@ import indexRoutes from "routes/index.jsx";
 
 const rootReducer = combineReducers({
   exp: expense,
-  auth: auth
+  auth: auth,
+  quote: quote
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
