@@ -20,4 +20,6 @@ export const LOGOUT = 'LOGOUT'
 
 export const CHECK_AUTH_STATUS = 'CHECK_AUTH_STATUS';
 
-export const GET_QUOTE = 'GET_QUOTE'
+export const GET_QUOTE = 'GET_QUOTE';
+
+export const GET_LOCATION = 'GET_LOCATION';

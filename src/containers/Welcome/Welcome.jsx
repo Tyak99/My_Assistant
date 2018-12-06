@@ -3,31 +3,36 @@ import { connect } from 'react-redux';
 import { Row, Col, Card, CardHeader, CardBody } from "reactstrap";
 import { PanelHeader, CardData, Emoji } from "components";
 import "./Welcome.css";
-import * as actions from '../../store/actions/quotes'
+import * as actions from '../../store/actions/general'
 class Welcome extends Component {
     state = {
         datas: [
-            // {name: "Current Date",
-            //  id: 1, 
-            //  value: new Date().toDateString(), 
-            //  icon: <span style={{color:'tomato'}}> 
-            //  <i className="fas fa-calendar-alt fa-2x"></i> 
-            //  </span>},
+            {name: "Current Date",
+             id: 1, 
+             value: new Date().toDateString(), 
+             icon: <span style={{color:'tomato'}}> 
+             <i className="fas fa-calendar-alt fa-2x"></i> 
+             </span>},
             {name: "Your Current Location",
              id: 2,
-             value: "London, UK", 
+             value: this.props.location, 
              icon: <span style={{color:'yellow'}}>
              <i className="fa fa-location-arrow fa-2x">
              </i></span>},
-            {name: "Temperature in your area", 
-             value: '10 deg', 
-             id: 3,
-             icon: <span style={{color:'blue'}}>
-             <i className="fas fa-temperature-high fa-2x">
-             </i></span>}  
+            // {name: "Temperature in your area", 
+            //  value: '10 deg', 
+            //  id: 3,
+            //  icon: <span style={{color:'blue'}}>
+            //  <i className="fas fa-temperature-high fa-2x">
+            //  </i></span>}  
         ],
     }
     componentDidMount() {
+        if(this.props.location !== null) {
+            return 
+        } else {
+            this.props.getLocal()
+        }
         this.props.quote();
     }
     render() {
@@ -86,12 +91,14 @@ class Welcome extends Component {
 const mapStateToProps = state => {
     return {
         isAuthenticated: state.auth.token !== null,
-        qod: state.quote.qod
+        qod: state.gen.qod,
+        location: state.gen.location
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
-        quote: () => dispatch(actions.quote())
+        quote: () => dispatch(actions.quote()),
+        getLocal: () => dispatch(actions.getLocation())
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Welcome);

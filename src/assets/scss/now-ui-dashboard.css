@@ -1663,7 +1663,6 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
   .navbar .navbar-nav .nav-item .nav-link:not(.btn):hover,
   .navbar .navbar-nav .nav-item .nav-link:not(.btn):active {
     background-color: rgba(255, 255, 255, 0.2);
-    /* background-color: red; */
     border-radius: 0.1875rem;
     color: #FFFFFF; }
   .navbar .logo-container {
@@ -2760,7 +2759,7 @@ Created using IcoMoon - icomoon.io
       color: #FFFFFF; }
     .sidebar .nav li.active > a:not([data-toggle="collapse"]),
     .off-canvas-sidebar .nav li.active > a:not([data-toggle="collapse"]) {
-      background-color: rgb(77, 75, 75);
+      background-color: rgba(255, 255, 255, 0.1);
       box-shadow: 0 1px 15px 1px rgba(39, 39, 39, 0.1); }
     .sidebar .nav li.active > a[data-toggle="collapse"],
     .off-canvas-sidebar .nav li.active > a[data-toggle="collapse"] {
@@ -2892,7 +2891,7 @@ Created using IcoMoon - icomoon.io
   .off-canvas-sidebar:after {
     display: block;
     content: "";
-    opacity: 4;
+    opacity: 1;
     position: absolute;
     width: 100%;
     height: 100%;

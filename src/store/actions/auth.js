@@ -57,8 +57,8 @@ export const login = (email, password) => {
             localStorage.setItem('id', id)
         })
         .catch(error => {
-            console.log(error.response.data.error.message)
-            dispatch(loginFailed(error.response.data.error.message))
+            console.log(error)
+            dispatch(loginFailed(error))
         })
     }
 }
