@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { TextInput, Spinner } from 'components';
 import * as actionCreators from "../../store/actions/actions";
+import moment from 'moment';
 
 class AddT extends Component {
     state = {
@@ -23,8 +24,16 @@ class AddT extends Component {
         if(this.state.name.length <= 0 || this.state.amount.length <= 0 || this.state.value == 'Choose') {
             return 
         }
+        //data to be sent to the backend
+        const expense = {
+            name: this.state.name,
+            amount: `NGN ${this.state.amount}`,
+            value: this.state.value,
+            timestamp: new Date().getTime(),
+            createdAt: moment().format("DD/MM/YYYY")
+        } 
         //submit the entry
-        this.props.submit(this.state.name, `NGN ${this.state.amount}`, this.state.value)
+        this.props.submit(expense, this.props.token)
         // im trying to clear the text field here
         this.setState({name: ''})
         this.setState({amount: ''}) 
@@ -55,12 +64,13 @@ class AddT extends Component {
 
 const mapStateToProps = state => {
     return {
-        Addloading: state.exp.Addloading
+        Addloading: state.exp.Addloading,
+        token: state.auth.token
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        submit: (name, amount, value) => dispatch(actionCreators.add(name, amount, value)),
+        submit: (expense, token) => dispatch(actionCreators.add(expense, token)),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(AddT);

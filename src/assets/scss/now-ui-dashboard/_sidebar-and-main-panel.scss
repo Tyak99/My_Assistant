@@ -133,7 +133,7 @@
             }
 
             &.active > a:not([data-toggle="collapse"]){
-                background-color: $white-color;
+                background-color: rgb(87, 83, 83);;
                 box-shadow: $box-shadow;
             }
 

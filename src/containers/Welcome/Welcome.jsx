@@ -3,31 +3,38 @@ import { connect } from 'react-redux';
 import { Row, Col, Card, CardHeader, CardBody } from "reactstrap";
 import { PanelHeader, CardData, Emoji } from "components";
 import "./Welcome.css";
+import * as actions from '../../store/actions/general'
+import TestInput from "../../components/TestInput/TestInput";
 class Welcome extends Component {
     state = {
         datas: [
-            {name: "Current Date", 
+            {name: "Current Date",
+             id: 1, 
              value: new Date().toDateString(), 
              icon: <span style={{color:'tomato'}}> 
-             <i class="fas fa-calendar-alt fa-2x"></i> 
+             <i className="fas fa-calendar-alt fa-2x"></i> 
              </span>},
-            {name: "Your Current Location", 
-             value: "London, UK", 
+            {name: "Your Current Location",
+             id: 2,
+             value: this.props.location, 
              icon: <span style={{color:'yellow'}}>
-             <i class="fa fa-location-arrow fa-2x">
+             <i className="fa fa-location-arrow fa-2x">
              </i></span>},
-            {name: "Temperature in your area", 
-             value: '10 deg', 
-             icon: <span style={{color:'blue'}}>
-             <i class="fas fa-temperature-high fa-2x">
-             </i></span>}  
+            // {name: "Temperature in your area", 
+            //  value: '10 deg', 
+            //  id: 3,
+            //  icon: <span style={{color:'blue'}}>
+            //  <i className="fas fa-temperature-high fa-2x">
+            //  </i></span>}  
         ],
-        emojis: [
-            {symbol: <i class="fa fa-smile-wink fa-4x"></i> , label: "grinning face"},
-            {symbol: <i class="fa fa-smile-wink fa-4x"></i> , label: "grinning face"},
-            {symbol: <i class="fa fa-smile-wink fa-4x"></i> , label: "grinning face"},
-            {symbol: <i class="fa fa-smile-wink fa-4x"></i> , label: "grinning face"},
-        ]
+    }
+    componentDidMount() {
+        if(this.props.location !== null) {
+            return 
+        } else {
+            this.props.getLocal()
+        }
+        this.props.quote();
     }
     render() {
 
@@ -41,6 +48,7 @@ class Welcome extends Component {
                     <CardBody>
                         {this.state.datas.map(data => {
                             return <CardData
+                            key = {data.id}
                             icon = {data.icon}
                             name = {data.name}
                             value = {data.value}/>
@@ -56,16 +64,23 @@ class Welcome extends Component {
                     <Row>
                         <Col md = {8} xs={12}>
                         <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
-                            <CardHeader>Good Morning</CardHeader>
+                            <CardHeader>Hello, Good Morning</CardHeader>
                             <hr className = "hrst"/>
                            {Display}
                         </Card>
                         </Col>
                         <Col md = {4} xs={12}>
                         <Card>
-                            <CardHeader>Welcome Page</CardHeader>
+                            <CardHeader>Quotes</CardHeader>
                             <CardBody>
-                            <div> In here i will mount all my welcome shitss </div>
+                            <div>
+                                <h2> {this.props.qod.title} </h2>
+                                <blockquote class="blockquote">
+                                    <p class="mb-0">{this.props.qod.quote}</p>
+                                    <footer class="blockquote-footer">{this.props.qod.author}</footer>
+                                </blockquote>
+                            </div>
+                            <TestInput/>
                             </CardBody>
                         </Card>
                         </Col>
@@ -77,7 +92,15 @@ class Welcome extends Component {
 }
 const mapStateToProps = state => {
     return {
-        isAuthenticated: state.auth.token !== null
+        isAuthenticated: state.auth.token !== null,
+        qod: state.gen.qod,
+        location: state.gen.location
     }
 }
-export default connect(mapStateToProps)(Welcome);
+const mapDispatchToProps = dispatch => {
+    return {
+        quote: () => dispatch(actions.quote()),
+        getLocal: () => dispatch(actions.getLocation())
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Welcome);

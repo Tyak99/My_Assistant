@@ -22,17 +22,18 @@ export const addExpFailed = (error) => {
         error
     }
 }
-export const add = (name, amount, value) => {
+export const add = (expense, token) => {
     return dispatch => {
         
-        const expense = {
-            name: name,
-            amount: amount,
-            value: value,
-            createdAt: moment().format("DD/MM/YYYY")
-                }
+        // const expense = {
+        //     name: name,
+        //     amount: amount,
+        //     value: value,
+        //     timestamp: new Date().getTime(),
+        //     createdAt: moment().format("DD/MM/YYYY")
+        //         }
         dispatch(addStart())
-        axios.post(ExpenseApiUrl, expense)
+        axios.post(ExpenseApiUrl, expense) 
         .then(response => {
             console.log(response)
             dispatch(addExpSuccess(response.data))

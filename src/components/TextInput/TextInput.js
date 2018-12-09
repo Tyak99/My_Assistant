@@ -5,11 +5,11 @@ import {Button} from "components";
 const TextInput = ({Aname, Aamount, submitH, select}) => {
     return (
         <div> 
-            <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <label class="input-group-text" for="inputSelect">Options</label>
+            <div className="input-group mb-3">
+            <div className="input-group-prepend">
+                <label className="input-group-text" htmlFor="inputSelect">Options</label>
             </div>
-            <select class="custom-select" id="inputSelect"  onChange={select}>
+            <select className="custom-select" id="inputSelect"  onChange={select}>
                 <option>Choose...</option>
                 <option value="Food/Drinks">Food/Drinks</option>
                 <option value="Transport">Transport</option>

@@ -26,7 +26,7 @@ class Today extends Component {
                 //     day = "Today"
                 // }
                return (
-                <tr> 
+                <tr key = {prop.timestamp}>  
                     <td ><strong className = "h6">  {prop.value} </strong> 
                         <br/> <span className="font-italic"> 
                         {`'${prop.name}'`} </span> </td>
@@ -54,7 +54,7 @@ class Today extends Component {
                                     <Table responsive>
                                         <thead className="text-primary">
                                             <tr>
-                                              {this.props.theader.map((prop, key) => {
+                                              {/* {this.props.theader.map((prop, key) => {
                                                   if (key === thead.length - 1)
                                                   return (
                                                     <th key={key} className="text-right">
@@ -62,7 +62,9 @@ class Today extends Component {
                                                     </th>
                                                   );
                                                   return <th> {prop} </th>
-                                              })}  
+                                              })}   */}
+                                              <th> Name </th>
+                                              <th className = 'text-right'> Amount </th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -91,7 +93,8 @@ const mapStateToProps = state => {
     return {
         theader: state.exp.thead,
         tbody: state.exp.tbody,
-        loading: state.exp.loading
+        loading: state.exp.loading,
+        token: state.auth.token
     }
 }
 

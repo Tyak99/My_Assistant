@@ -2759,7 +2759,7 @@ Created using IcoMoon - icomoon.io
       color: #FFFFFF; }
     .sidebar .nav li.active > a:not([data-toggle="collapse"]),
     .off-canvas-sidebar .nav li.active > a:not([data-toggle="collapse"]) {
-      background-color: #FFFFFF;
+      background-color: #575353;
       box-shadow: 0 1px 15px 1px rgba(39, 39, 39, 0.1); }
     .sidebar .nav li.active > a[data-toggle="collapse"],
     .off-canvas-sidebar .nav li.active > a[data-toggle="collapse"] {
