@@ -4,6 +4,7 @@ import { Row, Col, Card, CardHeader, CardBody } from "reactstrap";
 import { PanelHeader, CardData, Emoji } from "components";
 import "./Welcome.css";
 import * as actions from '../../store/actions/general'
+import TestInput from "../../components/TestInput/TestInput";
 class Welcome extends Component {
     state = {
         datas: [
@@ -79,6 +80,7 @@ class Welcome extends Component {
                                     <footer class="blockquote-footer">{this.props.qod.author}</footer>
                                 </blockquote>
                             </div>
+                            <TestInput/>
                             </CardBody>
                         </Card>
                         </Col>

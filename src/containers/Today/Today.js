@@ -93,7 +93,8 @@ const mapStateToProps = state => {
     return {
         theader: state.exp.thead,
         tbody: state.exp.tbody,
-        loading: state.exp.loading
+        loading: state.exp.loading,
+        token: state.auth.token
     }
 }
 
