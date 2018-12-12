@@ -16,6 +16,7 @@ import Maps from "views/Maps/Maps.jsx";
 import Upgrade from "views/Upgrade/Upgrade.jsx";
 import UserPage from "views/UserPage/UserPage.jsx";
 import Login from "../../containers/Login/Login";
+import Task from '../../containers/Task/Task';
 
 
 var ps;
@@ -25,6 +26,12 @@ let myRoutes = [
       name: "Welcome",
       icon: "ui-1_bell-53",
       component: Welcome
+    },
+    {
+        path: "/task",
+        name: "Task",
+        icon: "ui-1_bell-53",
+        component: Task
     },
     {
       pro: true,
@@ -74,6 +81,12 @@ class MyDashboard extends Component {
                     icon: "design_app",
                     component: Today
                   },
+                  {
+                    path: "/task",
+                    name: "Task",
+                    icon: "ui-1_bell-53",
+                    component: Task
+                  },
                   { path: "/icons", name: "Icons", icon: "design_image", component: Icons },
                   {
                     path: "/user-page",
@@ -92,6 +105,7 @@ class MyDashboard extends Component {
         let route = (
             <Switch>
                 <Route path ='/welcome' component = {Welcome}/>
+                <Route path ='/task' component = {Task}/>
                 <Route path = '/login' component = {Login}/>
                 <Redirect to = '/welcome'/>
             </Switch>
@@ -101,6 +115,7 @@ class MyDashboard extends Component {
                 <Switch>
                     <Route path ='/welcome' component = {Welcome}/>
                     <Route path ='/dashboard' component = {Today}/>
+                    <Route path ='/task' component = {Task}/>
                     <Route path = '/icons'component = {Icons}/>
                     <Route path ='/extended-tables' component = {TableList}/>
                     <Route path ='/typography' component = {Typography}/>
