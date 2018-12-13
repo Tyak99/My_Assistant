@@ -14,6 +14,9 @@ class Task extends React.Component {
     edit: '',
     remove: ''
   }
+  componentDidMount() {
+    this.props.getTask()
+  }
   render() {
     
     // for (var i = 0; i < this.props.tasks.length; i++) {
@@ -94,7 +97,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    rm: (id) => dispatch(actionCreators.removeTask(id))
+    rm: (id) => dispatch(actionCreators.removeTask(id)),
+    getTask: () => dispatch(actionCreators.task())
   }
 }
 

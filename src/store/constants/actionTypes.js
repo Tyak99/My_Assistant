@@ -24,4 +24,11 @@ export const GET_QUOTE = 'GET_QUOTE';
 
 export const GET_LOCATION = 'GET_LOCATION';
 
+export const GET_TASK = 'GET_TASK'
+export const GET_TASK_SUCCESS = 'GET_TASK_SUCCESS'
+export const GET_TASK_FAILED = 'GET_TASK_FAILED'
+
+export const ADD_TASK_SUCCESS = "ADD_EXPENSE_START"
+export const ADD_TASK_FAILED = "ADD_EXPENSE_SUCCESS"
+export const ADD_TASK = 'ADD_TASK';
 export const REMOVE_TASK = 'REMOVE_TASK';
