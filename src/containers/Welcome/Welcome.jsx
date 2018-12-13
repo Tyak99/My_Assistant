@@ -75,12 +75,11 @@ class Welcome extends Component {
                             <CardBody>
                             <div>
                                 <h2> {this.props.qod.title} </h2>
-                                <blockquote class="blockquote">
-                                    <p class="mb-0">{this.props.qod.quote}</p>
-                                    <footer class="blockquote-footer">{this.props.qod.author}</footer>
+                                <blockquote className="blockquote">
+                                    <p className="mb-0">{this.props.qod.quote}</p>
+                                    <footer className="blockquote-footer">{this.props.qod.author}</footer>
                                 </blockquote>
                             </div>
-                            <TestInput/>
                             </CardBody>
                         </Card>
                         </Col>

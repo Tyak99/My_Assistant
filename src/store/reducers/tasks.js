@@ -2,7 +2,7 @@ import * as actionTypes from "../constants/actionTypes";
 
 
 const initialState = {
-    tasks: [],
+    tasks: null,
     loading: false,
     error: null
 }

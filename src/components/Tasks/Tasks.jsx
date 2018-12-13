@@ -15,7 +15,11 @@ class Task extends React.Component {
     remove: ''
   }
   componentDidMount() {
-    this.props.getTask()
+    if(this.props.tasks == null) {
+      this.props.getTask()
+    } else {
+      return
+    }
   }
   render() {
     
