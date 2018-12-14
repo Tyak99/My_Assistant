@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Input, InputGroup, Button } from 'reactstrap';
 import * as actionCreators from '../../store/actions/task';
 import { connect } from 'react-redux';
+import { Spinner } from 'components';
 
 class AddTask extends Component {
     state = {
@@ -15,7 +16,11 @@ class AddTask extends Component {
     inputHandler = (e) => {
         this.setState({taskInput: e.target.value})
     }
-    submitHandler = () => {
+    submitHandler = (e) => {
+        e.preventDefault()
+        if(this.state.taskInput.length <= 8) {
+            return 
+        }
         const taskData = {
             text: this.state.taskInput,
             id: Math.random()
@@ -34,12 +39,19 @@ class AddTask extends Component {
                 </Button>    
             )
         if(this.state.showInput == true) {
+            let input = <Input placeholder="name" onChange = {this.inputHandler}/>
+            if(this.props.loading) {
+                input = <Spinner/>
+            }
             Display = (
                 <div>
+                    <form onSubmit = {this.submitHandler}> 
                     <InputGroup>
-                        <Input placeholder="name" onChange = {this.inputHandler}/>
+                        {input} 
                     </InputGroup>
-                    <Button color="primary" round = 'true' onClick = {this.submitHandler}>Submit</Button>
+                    <Button color="primary" round = 'true' >Submit</Button>
+                    </form>
+                    
                 </div>
             )
         }    
@@ -52,10 +64,16 @@ class AddTask extends Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        loading: state.task.loading
+    }
+}
+
 const mapDispatchToProps = (dispatch) => {
     return {
         addTask: (taskData) => dispatch(actionCreators.add(taskData))
     }
 }
 
-export default connect(null, mapDispatchToProps)(AddTask);
+export default connect(mapStateToProps, mapDispatchToProps)(AddTask);
