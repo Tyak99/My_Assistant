@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import {expense } from "./store/reducers/expense";
 import { auth } from './store/reducers/auth';
 import { general } from './store/reducers/general';
+import { tasks } from './store/reducers/tasks';
 // import {reducer} from "./store/reducers/reducer";
 import thunk from 'redux-thunk';
 
@@ -20,7 +21,8 @@ import indexRoutes from "routes/index.jsx";
 const rootReducer = combineReducers({
   exp: expense,
   auth: auth,
-  gen: general
+  gen: general,
+  task: tasks
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
