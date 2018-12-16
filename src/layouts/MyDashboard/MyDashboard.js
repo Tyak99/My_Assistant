@@ -17,42 +17,22 @@ import Upgrade from "views/Upgrade/Upgrade.jsx";
 import UserPage from "views/UserPage/UserPage.jsx";
 import Login from "../../containers/Login/Login";
 import Task from '../../containers/Task/Task';
+import Logout from "../../containers/Login/Logout";
 
 
 var ps;
-let myRoutes = [
-    {
-      path: "/welcome",
-      name: "Welcome",
-      icon: "ui-1_bell-53",
-      component: Welcome
-    },
-    {
-        path: "/task",
-        name: "Task",
-        icon: "ui-1_bell-53",
-        component: Task
-    },
-    {
-      pro: true,
-      path: "/login",
-      name: "Login",
-      icon: "objects_spaceship",
-      component: Login
-    },
-  ];
+
 
 
 
 class MyDashboard extends Component {
     componentDidMount() {
-        this.props.checkAuth();
-    }
-    componentDidMount() {
         if (navigator.platform.indexOf("Win") > -1) {
           ps = new PerfectScrollbar(this.refs.mainPanel);
           document.body.classList.toggle("perfect-scrollbar-on");
         }
+        this.props.checkAuth();
+        console.log("MyD")
       }
       componentWillUnmount() {
         if (navigator.platform.indexOf("Win") > -1) {
@@ -67,6 +47,21 @@ class MyDashboard extends Component {
         }
       }
     render() {
+        let myRoutes = [
+            {
+              path: "/welcome",
+              name: "Welcome",
+              icon: "ui-1_bell-53",
+              component: Welcome
+            },
+            {
+              pro: true,
+              path: "/login",
+              name: "Login",
+              icon: "objects_spaceship",
+              component: Login
+            },
+          ];
         if(this.props.isAuthenticated) {
             myRoutes = [
                 {
@@ -95,17 +90,16 @@ class MyDashboard extends Component {
                     component: UserPage
                   },
                   {
-                    path: "/typography",
-                    name: "Typography",
+                    path: "/logout",
+                    name: "Logout",
                     icon: "design-2_ruler-pencil",
-                    component: Typography
+                    component: Logout
                   },
             ]
         }
         let route = (
             <Switch>
                 <Route path ='/welcome' component = {Welcome}/>
-                <Route path ='/task' component = {Task}/>
                 <Route path = '/login' component = {Login}/>
                 <Redirect to = '/welcome'/>
             </Switch>
@@ -117,8 +111,7 @@ class MyDashboard extends Component {
                     <Route path ='/dashboard' component = {Today}/>
                     <Route path ='/task' component = {Task}/>
                     <Route path = '/icons'component = {Icons}/>
-                    <Route path ='/extended-tables' component = {TableList}/>
-                    <Route path ='/typography' component = {Typography}/>
+                    <Route path ='/logout' component = {Logout}/>
                     <Redirect to = '/welcome'/>
                 </Switch>
             )
