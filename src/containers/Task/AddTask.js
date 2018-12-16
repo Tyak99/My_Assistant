@@ -23,9 +23,10 @@ class AddTask extends Component {
         }
         const taskData = {
             text: this.state.taskInput,
-            id: Math.random()
+            id: Math.random(),
+            userId: this.props.userId
         }
-        this.props.addTask(taskData)
+        this.props.addTask(taskData, this.props.token, this.props.userId)
     }
     componentDidUpdate() {
         console.log(this.state)
@@ -66,13 +67,15 @@ class AddTask extends Component {
 
 const mapStateToProps = state => {
     return {
-        loading: state.task.loading
+        loading: state.task.loading,
+        token: state.auth.token,
+        userId: state.auth.id
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addTask: (taskData) => dispatch(actionCreators.add(taskData))
+        addTask: (taskData, token, userId) => dispatch(actionCreators.add(taskData, token, userId))
     }
 }
 
