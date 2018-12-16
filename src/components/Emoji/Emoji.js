@@ -37,8 +37,8 @@ class Emoji extends Component {
                     <Col md= {12} xm = {12}>
                         <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
                             <CardHeader> <span style={{color:'green'}}> 
-                            <img src = 'https://media.giphy.com/media/CaiVJuZGvR8HK/giphy.gif' alt = 'gif' width='30' height='30'/>
-                            {/* <i className="fas fa-smile fa-2x"></i> */}
+                            {/* <img src = 'https://media.giphy.com/media/CaiVJuZGvR8HK/giphy.gif' alt = 'gif' width='30' height='30'/> */}
+                            <i className="fas fa-smile fa-2x"></i>
                                 </span> How are you feeling today? </CardHeader>
                             <CardBody className="font-weight-bold">
                             <Row>
