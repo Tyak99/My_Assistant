@@ -16,7 +16,7 @@ class Task extends React.Component {
   }
   componentDidMount() {
     if(this.props.tasks == null) {
-      this.props.getTask()
+      this.props.getTask(this.props.token, this.props.userId)
     } else {
       return
     }
@@ -95,14 +95,16 @@ class Task extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    tasks: state.task.tasks
+    tasks: state.task.tasks,
+    token: state.auth.token,
+    userId: state.auth.id
   }
 } 
 
 const mapDispatchToProps = dispatch => {
   return {
     rm: (id) => dispatch(actionCreators.removeTask(id)),
-    getTask: () => dispatch(actionCreators.task())
+    getTask: (token, userId) => dispatch(actionCreators.task(token, userId))
   }
 }
 

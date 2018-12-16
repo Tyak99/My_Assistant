@@ -22,7 +22,7 @@ export const addExpFailed = (error) => {
         error
     }
 }
-export const add = (expense, token) => {
+export const add = (expense, token, userId) => {
     return dispatch => {
         
         // const expense = {
@@ -33,11 +33,11 @@ export const add = (expense, token) => {
         //     createdAt: moment().format("DD/MM/YYYY")
         //         }
         dispatch(addStart())
-        axios.post(ExpenseApiUrl, expense) 
+        axios.post(`${ExpenseApiUrl}${token}`, expense) 
         .then(response => {
             console.log(response)
             dispatch(addExpSuccess(response.data))
-            dispatch(getExp())
+            dispatch(getExp(token, userId))
         })
         .catch(error => {
             dispatch(addExpFailed(error))
@@ -64,13 +64,22 @@ export const getExpFailed = (error) => {
     }
 }
 
-export const getExp = () => {
+export const getExp = (token, userId) => {
     return dispatch => {
         dispatch(getExpStart())
-            axios.get(ExpenseApiUrl)
+        const queryParams =`${ExpenseApiUrl}${token}&orderBy="userId"&equalTo="${userId}"`
+            axios.get(queryParams)
             .then(response => {
-                console.log(response.data)
-                dispatch(getExpSuccess(response.data))
+                const Today = moment().format("DD/MM/YYYY")
+                const result = Object.values(response.data)
+                const newResult = (result) => {
+                    if(result.createdAt == Today) {
+                    return true
+                    }
+                }
+                const filteredResult = result.filter(newResult)
+                console.log(result.filter(newResult))
+                dispatch(getExpSuccess(filteredResult))
             })
             .catch(error => {
                 console.log(error)

@@ -30,10 +30,11 @@ class AddT extends Component {
             amount: `NGN ${this.state.amount}`,
             value: this.state.value,
             timestamp: new Date().getTime(),
-            createdAt: moment().format("DD/MM/YYYY")
+            createdAt: moment().format("DD/MM/YYYY"),
+            userId: this.props.userId
         } 
         //submit the entry
-        this.props.submit(expense, this.props.token)
+        this.props.submit(expense, this.props.token, this.props.userId)
         // im trying to clear the text field here
         this.setState({name: ''})
         this.setState({amount: ''}) 
@@ -65,12 +66,13 @@ class AddT extends Component {
 const mapStateToProps = state => {
     return {
         Addloading: state.exp.Addloading,
-        token: state.auth.token
+        token: state.auth.token,
+        userId: state.auth.id
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        submit: (expense, token) => dispatch(actionCreators.add(expense, token)),
+        submit: (expense, token, userId) => dispatch(actionCreators.add(expense, token, userId)),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(AddT);
