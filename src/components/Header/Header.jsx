@@ -166,7 +166,7 @@ class Header extends React.Component {
                   </p>
                 </Link>
               </NavItem>
-              <Dropdown
+              {/* <Dropdown
                 nav
                 isOpen={this.state.dropdownOpen}
                 toggle={e => this.dropdownToggle(e)}
@@ -176,13 +176,13 @@ class Header extends React.Component {
                   <p>
                     <span className="d-lg-none d-md-block">Some Actions</span>
                   </p>
-                </DropdownToggle>
-                <DropdownMenu right>
+                </DropdownToggle> */}
+                {/* <DropdownMenu right>
                   <DropdownItem tag="a" onClick = {this.props.logout}>Logout</DropdownItem>
                   <DropdownItem tag="a">Another Action</DropdownItem>
                   <DropdownItem tag="a">Something else here</DropdownItem>
                 </DropdownMenu>
-              </Dropdown>
+              </Dropdown> */}
               <NavItem>
                 <Link to="#pablo" className="nav-link">
                   <i className="now-ui-icons users_single-02" />

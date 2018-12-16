@@ -43,7 +43,9 @@ class Welcome extends Component {
               Welcome to Your Assistant, Please log in
             </CardBody>
         )
+        let greeting;
         if(this.props.isAuthenticated) {
+            greeting = "User, Good morning"
             Display = (
                     <CardBody>
                         {this.state.datas.map(data => {
@@ -64,7 +66,7 @@ class Welcome extends Component {
                     <Row>
                         <Col md = {8} xs={12}>
                         <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
-                            <CardHeader>Hello, Good Morning</CardHeader>
+                            <CardHeader>Hello {greeting}</CardHeader>
                             <hr className = "hrst"/>
                            {Display}
                         </Card>

@@ -101,7 +101,6 @@ class MyDashboard extends Component {
             <Switch>
                 <Route path ='/welcome' component = {Welcome}/>
                 <Route path = '/login' component = {Login}/>
-                <Redirect to = '/welcome'/>
             </Switch>
         )
         if(this.props.isAuthenticated) {
