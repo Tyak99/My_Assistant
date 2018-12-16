@@ -28,7 +28,7 @@ export const expense = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        tbody: result.filter(newResult), 
+        tbody: action.data, 
       }
     case actionTypes.GET_EXPENSE_FAILED:
       return {
