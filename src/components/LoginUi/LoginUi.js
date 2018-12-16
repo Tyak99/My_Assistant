@@ -16,7 +16,7 @@ const LoginUi = ({emailHandler, passHandler, submit, loading, error}) => {
                             <Label for="examplePassword">Password</Label>
                             <Input type="password" name="password" id="examplePassword" placeholder="password " onChange = {passHandler}/>
                         </FormGroup>
-                        <Button color="primary">Submit</Button>
+                        <Button color="primary">Submit</Button> 
                      </Form>
     )
 
@@ -39,6 +39,7 @@ const LoginUi = ({emailHandler, passHandler, submit, loading, error}) => {
                 {ErrorMessage}
                 <CardBody>
                     {Display}
+                    <p> Dont have an account yet? <button><a href='/register'>Register</a></button> </p>
                 </CardBody>
               </Card>
             </Col>

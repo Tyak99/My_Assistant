@@ -1,5 +1,5 @@
 import * as actionTypes from "../constants/actionTypes";
-import { LoginApi } from "variables/general";
+import { LoginApi, RegisterApi } from "variables/general";
 import axios from 'axios';
 
 
@@ -10,6 +10,26 @@ export const checkAuthTimeout = (expiresIn) => {
         }, expiresIn * 1000)
     }
 }
+
+export const register  = (email, password) => {
+    const authData = {
+        email: email,
+        password: password,
+        returnSecureToken: true
+    }
+    return dispatch => {
+        axios.post(RegisterApi, authData)
+        .then(response => {
+            dispatch(loginSuccess(response.data.idToken, response.data.localId))
+            console.log(response)
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+}
+
+
 export const loginStart = () => {
     return {
         type: actionTypes.LOGIN_START
@@ -26,14 +46,6 @@ export const loginFailed = (error) => {
     return {
         type: actionTypes.LOGIN_FAILED,
         error: error
-    }
-}
-
-export const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('id');
-    return {
-        type: actionTypes.LOGOUT
     }
 }
 
@@ -60,6 +72,14 @@ export const login = (email, password) => {
             console.log(error)
             dispatch(loginFailed(error))
         })
+    }
+}
+
+export const logout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('id');
+    return {
+        type: actionTypes.LOGOUT
     }
 }
 

@@ -18,6 +18,7 @@ import UserPage from "views/UserPage/UserPage.jsx";
 import Login from "../../containers/Login/Login";
 import Task from '../../containers/Task/Task';
 import Logout from "../../containers/Login/Logout";
+import Register from '../../containers/Login/Register';
 
 
 var ps;
@@ -101,6 +102,7 @@ class MyDashboard extends Component {
             <Switch>
                 <Route path ='/welcome' component = {Welcome}/>
                 <Route path = '/login' component = {Login}/>
+                <Route path = '/register' component = {Register}/>
             </Switch>
         )
         if(this.props.isAuthenticated) {
