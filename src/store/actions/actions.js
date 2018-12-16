@@ -33,7 +33,7 @@ export const add = (expense, token) => {
         //     createdAt: moment().format("DD/MM/YYYY")
         //         }
         dispatch(addStart())
-        axios.post(ExpenseApiUrl, expense) 
+        axios.post(`${ExpenseApiUrl}${token}`, expense) 
         .then(response => {
             console.log(response)
             dispatch(addExpSuccess(response.data))
@@ -64,10 +64,10 @@ export const getExpFailed = (error) => {
     }
 }
 
-export const getExp = () => {
+export const getExp = (token) => {
     return dispatch => {
         dispatch(getExpStart())
-            axios.get(ExpenseApiUrl)
+            axios.get(`${ExpenseApiUrl}${token}`)
             .then(response => {
                 console.log(response.data)
                 dispatch(getExpSuccess(response.data))

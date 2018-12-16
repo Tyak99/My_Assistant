@@ -13,7 +13,7 @@ class Today extends Component {
         if(this.props.tbody !== null) {
             return
         } else {
-            this.props.getExp()
+            this.props.getExp(this.props.token)
         }
     }
     render() {
@@ -100,7 +100,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        getExp: () => dispatch(actionCreators.getExp())
+        getExp: (token) => dispatch(actionCreators.getExp(token))
     }
 }
 
