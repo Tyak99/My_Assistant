@@ -4,10 +4,14 @@ import { PanelHeader } from "components";
 import Spinner from "../Spinner/Spinner";
 
 
-const RegisterUi = ({emailInput, passInput, submit}) => {
+const RegisterUi = ({emailInput, passInput, usernameInput ,submit}) => {
     let ErrorMessage = <div> </div>
     let Display =  (
                     <Form onSubmit = {submit}>
+                         <FormGroup>
+                            <Label for="exampleEmail">Username</Label>
+                            <Input type="text" name="text" id="textInput" placeholder="username" onChange = {usernameInput}/>
+                        </FormGroup>
                         <FormGroup>
                             <Label for="exampleEmail">Email</Label>
                             <Input type="email" name="email" id="exampleEmail" placeholder="email" onChange = {emailInput}/>
@@ -35,7 +39,7 @@ const RegisterUi = ({emailInput, passInput, submit}) => {
             <Row>
                 <Col md = {8} xs = {12}>
                 <Card>
-                    <CardHeader>Register here</CardHeader>
+                    <CardHeader>Register</CardHeader>
                     <CardBody> 
                         {Display}
                     </CardBody>
