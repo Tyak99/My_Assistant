@@ -1,5 +1,5 @@
 import * as actionTypes from "../constants/actionTypes";
-import { LoginApi } from "variables/general";
+import { LoginApi, RegisterApi, SetDisplayName } from "variables/general";
 import axios from 'axios';
 
 
@@ -10,30 +10,67 @@ export const checkAuthTimeout = (expiresIn) => {
         }, expiresIn * 1000)
     }
 }
+
+export const registerSuccess = (data) => {
+    return {
+        type: actionTypes.REGISTER_SUCCESS,
+        data: data
+    }
+} 
+export const register  = (email, password, username) => {
+    const authData = {
+        email: email,
+        password: password,
+        returnSecureToken: true
+    }
+    return dispatch => {
+        axios.post(RegisterApi, authData)
+        .then(response => {
+            dispatch(registerSuccess())
+            dispatch(loginSuccess(response.data.idToken, response.data.localId, username))
+            console.log(response)
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+}
+
+export const userInfo = (username, token) => {
+    const userData = {
+        idToken: token,
+        displayName: username,
+        returnSecureToken: false
+    }
+    return dispatch => {
+        axios.post(SetDisplayName, userData)
+        .then(response => {
+            console.log(response)
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+}
+
+
 export const loginStart = () => {
     return {
         type: actionTypes.LOGIN_START
     }
 }
-export const loginSuccess = (token, id) => {
+export const loginSuccess = (token, id, username) => {
     return {
         type: actionTypes.LOGIN_SUCCESS,
         token: token,
-        id: id
+        id: id,
+        username: username
     }
 }
 export const loginFailed = (error) => {
     return {
         type: actionTypes.LOGIN_FAILED,
         error: error
-    }
-}
-
-export const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('id');
-    return {
-        type: actionTypes.LOGOUT
     }
 }
 
@@ -50,7 +87,8 @@ export const login = (email, password) => {
             console.log(response)
             const token = response.data.idToken
             const id = response.data.localId
-            dispatch(loginSuccess(token, id))
+            const username = response.data.displayName
+            dispatch(loginSuccess(token, id, username))
             dispatch(checkAuthTimeout(response.data.expiresIn))
             //save token and id to localstorage
             localStorage.setItem('token', token)
@@ -63,14 +101,22 @@ export const login = (email, password) => {
     }
 }
 
-export const checkAuthState = () => {
+export const logout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('id');
+    return {
+        type: actionTypes.LOGOUT
+    }
+}
+
+export const checkAuthState = (username) => {
     return dispatch => {
         const token = localStorage.getItem('token');
         const id = localStorage.getItem('id');
         if(!token || !id) {
             dispatch(logout())
         } else {
-            dispatch(loginSuccess(token, id))
+            dispatch(loginSuccess(token, id, username))
         }
     }
 }

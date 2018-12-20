@@ -18,6 +18,7 @@ import UserPage from "views/UserPage/UserPage.jsx";
 import Login from "../../containers/Login/Login";
 import Task from '../../containers/Task/Task';
 import Logout from "../../containers/Login/Logout";
+import Register from '../../containers/Login/Register';
 
 
 var ps;
@@ -31,7 +32,7 @@ class MyDashboard extends Component {
           ps = new PerfectScrollbar(this.refs.mainPanel);
           document.body.classList.toggle("perfect-scrollbar-on");
         }
-        this.props.checkAuth();
+        this.props.checkAuth(this.props.username);
         console.log("MyD")
       }
       componentWillUnmount() {
@@ -101,8 +102,12 @@ class MyDashboard extends Component {
             <Switch>
                 <Route path ='/welcome' component = {Welcome}/>
                 <Route path = '/login' component = {Login}/>
+                <Route path = '/register' component = {Register}/>
+                <Redirect to = '/welcome'/>
             </Switch>
         )
+        //I AM TRYING TO WORK ON THE ROUTING... SO THAT IT RETURNS TO A SPECIFIC ROUTE WHEN USER GOES TO A ROUTE
+        //THAT DOESNT EXIST.
         if(this.props.isAuthenticated) {
             route = (
                 <Switch>
@@ -110,7 +115,9 @@ class MyDashboard extends Component {
                     <Route path ='/dashboard' component = {Today}/>
                     <Route path ='/task' component = {Task}/>
                     <Route path = '/icons'component = {Icons}/>
+                    <Route path = '/user-page'component = {UserPage}/>
                     <Route path ='/logout' component = {Logout}/>
+                    {/* <Route component = {Typography}/> */}
                     <Redirect to = '/welcome'/>
                 </Switch>
             )
@@ -129,14 +136,15 @@ class MyDashboard extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        isAuthenticated: state.auth.token !== null
+        isAuthenticated: state.auth.token !== null,
+        username: state.auth.username
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         logout: () => dispatch(authActions.logout()),
-        checkAuth: () => dispatch(authActions.checkAuthState())
+        checkAuth: (username) => dispatch(authActions.checkAuthState(username))
     }
 }
 

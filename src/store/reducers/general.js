@@ -2,7 +2,7 @@ import * as actionTypes from '../constants/actionTypes';
 
 const initialState = {
     qod: {},
-    location: null
+    location: null,
 }
 export const general = (state = initialState, action) => {
     switch(action.type) {

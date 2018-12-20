@@ -2,6 +2,7 @@ import React from "react";
 import Spinner from "../Spinner/Spinner";
 import { Row, Col, Card, CardHeader, CardBody , Form, FormGroup, Label, Input, Button, Alert} from "reactstrap";
 import { PanelHeader } from "components";
+import { Link } from "react-router-dom";
 
 
 const LoginUi = ({emailHandler, passHandler, submit, loading, error}) => {
@@ -16,7 +17,7 @@ const LoginUi = ({emailHandler, passHandler, submit, loading, error}) => {
                             <Label for="examplePassword">Password</Label>
                             <Input type="password" name="password" id="examplePassword" placeholder="password " onChange = {passHandler}/>
                         </FormGroup>
-                        <Button color="primary">Submit</Button>
+                        <Button color="primary">Submit</Button> 
                      </Form>
     )
 
@@ -35,10 +36,11 @@ const LoginUi = ({emailHandler, passHandler, submit, loading, error}) => {
           <Row>
             <Col md = {8} xs = {12}>
               <Card>
-                <CardHeader>Login here</CardHeader>
+                <CardHeader>Login</CardHeader>
                 {ErrorMessage}
                 <CardBody>
                     {Display}
+                    <p> Don't have an account yet? <Link to ='/register'>Register</Link></p> 
                 </CardBody>
               </Card>
             </Col>
