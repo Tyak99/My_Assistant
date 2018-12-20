@@ -4,6 +4,7 @@ import { Row, Col, Card, CardHeader, CardBody } from "reactstrap";
 import { PanelHeader, CardData, Emoji } from "components";
 import "./Welcome.css";
 import * as actions from '../../store/actions/general'
+import * as authActions from '../../store/actions/auth'
 import TestInput from "../../components/TestInput/TestInput";
 class Welcome extends Component {
     state = {
@@ -20,12 +21,6 @@ class Welcome extends Component {
              icon: <span style={{color:'yellow'}}>
              <i className="fa fa-location-arrow fa-2x">
              </i></span>},
-            // {name: "Temperature in your area", 
-            //  value: '10 deg', 
-            //  id: 3,
-            //  icon: <span style={{color:'blue'}}>
-            //  <i className="fas fa-temperature-high fa-2x">
-            //  </i></span>}  
         ],
     }
     componentDidMount() {
@@ -35,6 +30,11 @@ class Welcome extends Component {
             this.props.getLocal()
         }
         this.props.quote();
+        if(this.props.username !== null) {
+            return
+        } else {
+            this.props.onSubUser(this.props.username, this.props.token)
+        }
     }
     render() {
 
@@ -45,7 +45,7 @@ class Welcome extends Component {
         )
         let greeting;
         if(this.props.isAuthenticated) {
-            greeting = "User, Good morning"
+            greeting = this.props.username + ", Good morning"
             Display = (
                     <CardBody>
                         {this.state.datas.map(data => {
@@ -95,13 +95,16 @@ const mapStateToProps = state => {
     return {
         isAuthenticated: state.auth.token !== null,
         qod: state.gen.qod,
-        location: state.gen.location
+        location: state.gen.location,
+        token: state.auth.token,
+        username: state.auth.username
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
         quote: () => dispatch(actions.quote()),
-        getLocal: () => dispatch(actions.getLocation())
+        getLocal: () => dispatch(actions.getLocation()),
+        onSubUser: (username, token) => dispatch(authActions.userInfo(username, token))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Welcome);

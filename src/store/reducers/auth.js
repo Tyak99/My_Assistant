@@ -4,7 +4,8 @@ const initialState = {
     loading: false,
     error: null,
     token: null,
-    id: null
+    id: null,
+    username: null
 }
 
 export const auth = (state= initialState, action) => {
@@ -20,7 +21,8 @@ export const auth = (state= initialState, action) => {
                 loading: false,
                 error: null,
                 token: action.token,
-                id: action.id
+                id: action.id,
+                username: action.username
             }
         case actionTypes.LOGIN_FAILED:
             return {
