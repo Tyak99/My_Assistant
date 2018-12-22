@@ -28,6 +28,7 @@ export const register  = (email, password, username) => {
         .then(response => {
             dispatch(registerSuccess())
             dispatch(loginSuccess(response.data.idToken, response.data.localId, username))
+            dispatch(userInfo(username, response.data.idToken))
             console.log(response)
         })
         .catch(error => {
@@ -45,7 +46,7 @@ export const userInfo = (username, token) => {
     return dispatch => {
         axios.post(SetDisplayName, userData)
         .then(response => {
-            console.log(response)
+            console.log('From the userInfo' + response)
         })
         .catch(error => {
             console.log(error)
