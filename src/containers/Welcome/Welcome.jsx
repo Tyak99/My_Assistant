@@ -31,11 +31,17 @@ class Welcome extends Component {
             this.props.getLocal()
         }
         this.props.quote();
-        // if(this.props.username !== null) {
-        //     return
-        // } else {
-        //     this.props.onSubUser(this.props.username, this.props.token)
-        // }
+        const time = new Date().toTimeString().split(' ')
+        if(time[0] > "02:59:00" && time[0] <= "11:59:00") {
+            localStorage.removeItem('greet')
+            localStorage.setItem('greet', "Good morning")
+        } else if(time[0] > "11:59:00" && time[0] <= "15:59:00") {
+            localStorage.removeItem('greet')
+            localStorage.setItem('greet', "Good afternoon")
+        } else {
+            localStorage.removeItem('greet')
+            localStorage.setItem('greet', "Good evening")
+        }
     }
     render() {
         let Display = (
@@ -70,7 +76,7 @@ class Welcome extends Component {
                     <Row>
                         <Col md = {8} xs={12}>
                         <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
-                            <CardHeader><h4><span style = {{color: '#00ffac'}}>Hey, {displayName} </span>Good Morning</h4></CardHeader>
+                            <CardHeader><h4><span style = {{color: '#00ffac'}}>Hey, {displayName} </span>{localStorage.getItem('greet')}</h4></CardHeader>
                             <hr className = "hrst"/>
                            {Display}
                         </Card>
