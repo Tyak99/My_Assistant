@@ -36,7 +36,7 @@ class Emoji extends Component {
                 <Row> 
                     <Col md= {12} xm = {12}>
                         <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
-                            <CardHeader> <span style={{color:'green'}}> 
+                            <CardHeader> <span style={{color:'#17f4ac'}}> 
                             {/* <img src = 'https://media.giphy.com/media/CaiVJuZGvR8HK/giphy.gif' alt = 'gif' width='30' height='30'/> */}
                             <i className="fas fa-smile fa-2x"></i>
                                 </span> How are you feeling today? </CardHeader>

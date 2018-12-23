@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { Row, Col, Card, CardHeader, CardBody } from "reactstrap";
 import { PanelHeader, CardData, Emoji } from "components";
+import { Link } from 'react-router-dom'
 import "./Welcome.css";
 import * as actions from '../../store/actions/general'
 import * as authActions from '../../store/actions/auth'
@@ -23,7 +24,7 @@ class Welcome extends Component {
              </i></span>},
         ],
     }
-    componentDidMount() {
+    componentWillMount() {
         if(this.props.location !== null) {
             return 
         } else {
@@ -37,15 +38,14 @@ class Welcome extends Component {
         // }
     }
     render() {
-
         let Display = (
             <CardBody>
               Welcome to Your Assistant, Please log in
             </CardBody>
         )
-        let greeting;
+        let displayName;
         if(this.props.isAuthenticated) {
-            greeting = this.props.username + ", Good morning"
+            displayName = this.props.username
             Display = (
                     <CardBody>
                         {this.state.datas.map(data => {
@@ -56,6 +56,10 @@ class Welcome extends Component {
                             value = {data.value}/>
                                 })}
                         <Emoji/>
+                        <h6 style={{color: '#ffffff', fontWeight: 600, fontSize: 13}}> Check out your today's activity 
+                        <Link to ='/dashboard'><span style={{color:'#17f4ac'}}> HERE<i className="fas fa-arrow-right"></i>
+                            </span> </Link>
+                        </h6>
                     </CardBody>
                 )
         }
@@ -66,7 +70,7 @@ class Welcome extends Component {
                     <Row>
                         <Col md = {8} xs={12}>
                         <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
-                            <CardHeader>Hello {greeting}</CardHeader>
+                            <CardHeader><h4><span style = {{color: '#00ffac'}}>Hey, {displayName} </span>Good Morning</h4></CardHeader>
                             <hr className = "hrst"/>
                            {Display}
                         </Card>
