@@ -18,7 +18,7 @@ class Welcome extends Component {
              </span>},
             {name: "Your Current Location",
              id: 2,
-             value: this.props.location, 
+             value: localStorage.getItem('location'), 
              icon: <span style={{color:'yellow'}}>
              <i className="fa fa-location-arrow fa-2x">
              </i></span>},

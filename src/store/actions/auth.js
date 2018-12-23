@@ -89,12 +89,14 @@ export const login = (email, password) => {
             const token = response.data.idToken
             const id = response.data.localId
             const username = response.data.displayName
+            const expiresIn = response.data.expiresIn
             dispatch(loginSuccess(token, id, username))
             dispatch(checkAuthTimeout(response.data.expiresIn))
             //save token and id to localstorage
             localStorage.setItem('token', token)
             localStorage.setItem('id', id)
             localStorage.setItem('username', username)
+            localStorage.setItem('expiresIn', expiresIn)
         })
         .catch(error => {
             console.log(error)
@@ -107,6 +109,7 @@ export const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('id');
     localStorage.removeItem('username');
+    localStorage.removeItem('expiresIn');
 
     return {
         type: actionTypes.LOGOUT
@@ -118,11 +121,13 @@ export const checkAuthState = () => {
         const token = localStorage.getItem('token');
         const id = localStorage.getItem('id');
         const username = localStorage.getItem('username')
+        const expiresIn = localStorage.getItem('expiresIn')
         if(!token || !id) {
             dispatch(logout())
         } else {
             // dispatch(getUserInfo(token))
             dispatch(loginSuccess(token, id, username))
+            dispatch(checkAuthTimeout(expiresIn))
         }
     }
 }

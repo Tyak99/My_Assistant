@@ -41,6 +41,7 @@ export const getLocation = () => {
         .then(response => {
             const mylocation = `${response.data.city}, ${response.data.country_name}`
             dispatch(location(mylocation))
+            localStorage.setItem('location', mylocation)
             console.log(mylocation)
         })
         .catch(error => {
