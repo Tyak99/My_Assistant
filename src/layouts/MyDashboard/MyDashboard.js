@@ -32,8 +32,7 @@ class MyDashboard extends Component {
           ps = new PerfectScrollbar(this.refs.mainPanel);
           document.body.classList.toggle("perfect-scrollbar-on");
         }
-        this.props.checkAuth(this.props.username);
-        console.log("MyD")
+        this.props.checkAuth();
       }
       componentWillUnmount() {
         if (navigator.platform.indexOf("Win") > -1) {
@@ -144,7 +143,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
     return {
         logout: () => dispatch(authActions.logout()),
-        checkAuth: (username) => dispatch(authActions.checkAuthState(username))
+        checkAuth: () => dispatch(authActions.checkAuthState())
     }
 }
 

@@ -30,11 +30,11 @@ class Welcome extends Component {
             this.props.getLocal()
         }
         this.props.quote();
-        if(this.props.username !== null) {
-            return
-        } else {
-            this.props.onSubUser(this.props.username, this.props.token)
-        }
+        // if(this.props.username !== null) {
+        //     return
+        // } else {
+        //     this.props.onSubUser(this.props.username, this.props.token)
+        // }
     }
     render() {
 
@@ -104,7 +104,6 @@ const mapDispatchToProps = dispatch => {
     return {
         quote: () => dispatch(actions.quote()),
         getLocal: () => dispatch(actions.getLocation()),
-        onSubUser: (username, token) => dispatch(authActions.userInfo(username, token))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Welcome);
