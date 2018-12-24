@@ -2,6 +2,7 @@ import React, { Component}  from 'react';
 import { connect } from 'react-redux';
 import * as actionCreators from "../../store/actions/auth";
 import LoginUi from "../../components/LoginUi/LoginUi";
+import { Redirect } from "react-router-dom";
 
 class Login extends Component {
     state = {
@@ -17,6 +18,10 @@ class Login extends Component {
     SubmitHandler = (e) => {
         e.preventDefault()
         this.props.onSubmitH(this.state.email, this.state.password)
+        // this.props.history.push('/welcome')
+    }
+    componentDidMount() {
+        console.log(this.props.history)
     }
     render() {
         return (
