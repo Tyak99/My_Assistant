@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { Row, Col, Card, CardHeader, CardBody } from "reactstrap";
 import { PanelHeader, CardData, Emoji } from "components";
+import { Link } from 'react-router-dom'
 import "./Welcome.css";
 import * as actions from '../../store/actions/general'
 import * as authActions from '../../store/actions/auth'
@@ -17,35 +18,40 @@ class Welcome extends Component {
              </span>},
             {name: "Your Current Location",
              id: 2,
-             value: this.props.location, 
+             value: localStorage.getItem('location'), 
              icon: <span style={{color:'yellow'}}>
              <i className="fa fa-location-arrow fa-2x">
              </i></span>},
         ],
     }
-    componentDidMount() {
+    componentWillMount() {
         if(this.props.location !== null) {
             return 
         } else {
             this.props.getLocal()
         }
         this.props.quote();
-        if(this.props.username !== null) {
-            return
+        const time = new Date().toTimeString().split(' ')
+        if(time[0] > "02:59:00" && time[0] <= "11:59:00") {
+            localStorage.removeItem('greet')
+            localStorage.setItem('greet', "Good morning")
+        } else if(time[0] > "11:59:00" && time[0] <= "15:59:00") {
+            localStorage.removeItem('greet')
+            localStorage.setItem('greet', "Good afternoon")
         } else {
-            this.props.onSubUser(this.props.username, this.props.token)
+            localStorage.removeItem('greet')
+            localStorage.setItem('greet', "Good evening")
         }
     }
     render() {
-
         let Display = (
             <CardBody>
               Welcome to Your Assistant, Please log in
             </CardBody>
         )
-        let greeting;
+        let displayName;
         if(this.props.isAuthenticated) {
-            greeting = this.props.username + ", Good morning"
+            displayName = this.props.username
             Display = (
                     <CardBody>
                         {this.state.datas.map(data => {
@@ -56,6 +62,10 @@ class Welcome extends Component {
                             value = {data.value}/>
                                 })}
                         <Emoji/>
+                        <h6 style={{color: '#ffffff', fontWeight: 600, fontSize: 13}}> Check out your today's activity 
+                        <Link to ='/dashboard'><span style={{color:'#17f4ac'}}> HERE<i className="fas fa-arrow-right"></i>
+                            </span> </Link>
+                        </h6>
                     </CardBody>
                 )
         }
@@ -66,7 +76,7 @@ class Welcome extends Component {
                     <Row>
                         <Col md = {8} xs={12}>
                         <Card body inverse style={{ backgroundColor: '#333', borderColor: '#333' }}>
-                            <CardHeader>Hello {greeting}</CardHeader>
+                            <CardHeader><h4><span style = {{color: '#00ffac'}}>Hey, {displayName} </span>{localStorage.getItem('greet')}</h4></CardHeader>
                             <hr className = "hrst"/>
                            {Display}
                         </Card>
@@ -104,7 +114,6 @@ const mapDispatchToProps = dispatch => {
     return {
         quote: () => dispatch(actions.quote()),
         getLocal: () => dispatch(actions.getLocation()),
-        onSubUser: (username, token) => dispatch(authActions.userInfo(username, token))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Welcome);

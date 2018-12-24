@@ -28,6 +28,7 @@ export const register  = (email, password, username) => {
         .then(response => {
             dispatch(registerSuccess())
             dispatch(loginSuccess(response.data.idToken, response.data.localId, username))
+            dispatch(userInfo(username, response.data.idToken))
             console.log(response)
         })
         .catch(error => {
@@ -36,6 +37,7 @@ export const register  = (email, password, username) => {
     }
 }
 
+// Set the Display name of the user... 
 export const userInfo = (username, token) => {
     const userData = {
         idToken: token,
@@ -45,14 +47,13 @@ export const userInfo = (username, token) => {
     return dispatch => {
         axios.post(SetDisplayName, userData)
         .then(response => {
-            console.log(response)
+            console.log('From the userInfo' + response)
         })
         .catch(error => {
-            console.log(error)
+            console.log("From the userInfo" + error)
         })
     }
 }
-
 
 export const loginStart = () => {
     return {
@@ -88,11 +89,14 @@ export const login = (email, password) => {
             const token = response.data.idToken
             const id = response.data.localId
             const username = response.data.displayName
+            const expiresIn = response.data.expiresIn
             dispatch(loginSuccess(token, id, username))
             dispatch(checkAuthTimeout(response.data.expiresIn))
             //save token and id to localstorage
             localStorage.setItem('token', token)
             localStorage.setItem('id', id)
+            localStorage.setItem('username', username)
+            localStorage.setItem('expiresIn', expiresIn)
         })
         .catch(error => {
             console.log(error)
@@ -104,19 +108,26 @@ export const login = (email, password) => {
 export const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('id');
+    localStorage.removeItem('username');
+    localStorage.removeItem('expiresIn');
+
     return {
         type: actionTypes.LOGOUT
     }
 }
 
-export const checkAuthState = (username) => {
+export const checkAuthState = () => {
     return dispatch => {
         const token = localStorage.getItem('token');
         const id = localStorage.getItem('id');
+        const username = localStorage.getItem('username')
+        const expiresIn = localStorage.getItem('expiresIn')
         if(!token || !id) {
             dispatch(logout())
         } else {
+            // dispatch(getUserInfo(token))
             dispatch(loginSuccess(token, id, username))
+            dispatch(checkAuthTimeout(expiresIn))
         }
     }
 }

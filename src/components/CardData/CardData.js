@@ -7,8 +7,8 @@ const CardData = ({name, value, icon}) => {
             <Row> 
                 <Col md= {8} xm = {12}>
                     <Card body inverse style={{ backgroundColor: '#1d1817', borderTopWidth: '3px', borderTopColor: '#19a700' }}>
-                        <CardHeader> {icon} {name} </CardHeader>
-                        <CardBody className="font-weight-bold"> {value} </CardBody>
+                        {/* <CardHeader> {icon} {name} </CardHeader> */}
+                        <CardBody className="font-weight-bold">{icon} {value} </CardBody>
                     </Card>
                 </Col>
             </Row>
