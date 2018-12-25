@@ -72,14 +72,17 @@ export const getExp = (token, userId) => {
             .then(response => {
                 const Today = moment().format("DD/MM/YYYY")
                 const result = Object.values(response.data)
+                //fllter array to only show todays expenses
                 const newResult = (result) => {
                     if(result.createdAt == Today) {
                     return true
                     }
                 }
                 const filteredResult = result.filter(newResult)
-                console.log(result.filter(newResult))
-                dispatch(getExpSuccess(filteredResult))
+                //sort expenses to show new expenses first
+                const sortedArray = filteredResult.sort((a,b) => b.timestamp - a.timestamp)
+                console.log(sortedArray)
+                dispatch(getExpSuccess(sortedArray))
             })
             .catch(error => {
                 console.log(error)
