@@ -14,10 +14,10 @@ export const tasks = (state=initialState, action) => {
                 ...state,
             }
         case actionTypes.GET_TASK_SUCCESS:
-        const result = Object.values(action.data)
+        // const result = Object.values(action.data)
             return {
                 ...state,
-                tasks: result
+                tasks: action.data
             }
         case actionTypes.GET_TASK_FAILED:
             return {
@@ -41,7 +41,7 @@ export const tasks = (state=initialState, action) => {
                 error: action.error
             }
         case actionTypes.REMOVE_TASK:
-            const sub = state.tasks.filter(task => task.id !== action.index)
+            const sub = state.tasks.filter(task => task.timestamp !== action.index)
             return {
                 ...state,
                 tasks: sub
