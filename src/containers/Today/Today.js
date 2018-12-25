@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import { Row, Col, Card, CardHeader, CardBody, CardTitle, Table } from "reactstrap";
-import { PanelHeader, CardData, Spinner } from "components";
-import Moment from 'react-moment';
-import moment from 'moment'
+import { PanelHeader } from "components";
 import AddT from "../Add/Add";
 import { connect } from 'react-redux';
-import { thead, tbody } from "variables/general";
 import * as actionCreators from "../../store/actions/actions";
 
 class Today extends Component {
@@ -20,11 +17,6 @@ class Today extends Component {
         let data = null;
         if(this.props.tbody) {
             data = this.props.tbody.map((prop) => {
-                // const Today = moment().format("DD/MM/YYYY")
-                // let day = prop.createdAt
-                // if(prop.createdAt == Today) {
-                //     day = "Today"
-                // }
                return (
                 <tr key = {prop.timestamp}>  
                     <td ><strong className = "h6">  {prop.value} </strong> 
@@ -54,15 +46,6 @@ class Today extends Component {
                                     <Table responsive>
                                         <thead className="text-primary">
                                             <tr>
-                                              {/* {this.props.theader.map((prop, key) => {
-                                                  if (key === thead.length - 1)
-                                                  return (
-                                                    <th key={key} className="text-right">
-                                                      {prop}
-                                                    </th>
-                                                  );
-                                                  return <th> {prop} </th>
-                                              })}   */}
                                               <th> Name </th>
                                               <th className = 'text-right'> Amount </th>
                                             </tr>

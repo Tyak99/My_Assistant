@@ -17,6 +17,12 @@ export const registerSuccess = (data) => {
         data: data
     }
 } 
+export const registerFailed = (error) => {
+    return {
+        type: actionTypes.REGISTER_FAILED,
+        error: error
+    }
+} 
 export const register  = (email, password, username) => {
     const authData = {
         email: email,
@@ -24,15 +30,24 @@ export const register  = (email, password, username) => {
         returnSecureToken: true
     }
     return dispatch => {
+        dispatch(authStart())
         axios.post(RegisterApi, authData)
         .then(response => {
             dispatch(registerSuccess())
             dispatch(loginSuccess(response.data.idToken, response.data.localId, username))
             dispatch(userInfo(username, response.data.idToken))
-            console.log(response)
+            //cccheck authentication timeout
+            dispatch(checkAuthTimeout(response.data.expiresIn))
+            //save data to local storage
+            localStorage.setItem('token', response.data.idToken)
+            localStorage.setItem('id', response.data.localId)
+            localStorage.setItem('username', username)
+            localStorage.setItem('expirationDate', response.data.expiresIn)
         })
         .catch(error => {
-            console.log(error)
+            console.log(error.response.data.error.message)
+            // dispatch(loginFailed(error.response.data.error))
+            dispatch(registerFailed(error.response.data.error.message))
         })
     }
 }
@@ -47,17 +62,16 @@ export const userInfo = (username, token) => {
     return dispatch => {
         axios.post(SetDisplayName, userData)
         .then(response => {
-            console.log('From the userInfo' + response)
+
         })
         .catch(error => {
-            console.log("From the userInfo" + error)
         })
     }
 }
 
-export const loginStart = () => {
+export const authStart = () => {
     return {
-        type: actionTypes.LOGIN_START
+        type: actionTypes.AUTH_START
     }
 }
 export const loginSuccess = (token, id, username) => {
@@ -82,10 +96,9 @@ export const login = (email, password) => {
         returnSecureToken: true
     }
     return dispatch => {
-        dispatch(loginStart())
+        dispatch(authStart())
         axios.post(LoginApi, authData)
         .then(response => {
-            console.log(response)
             const token = response.data.idToken
             const id = response.data.localId
             const username = response.data.displayName
@@ -99,7 +112,6 @@ export const login = (email, password) => {
             localStorage.setItem('expirationDate', expiryTime)
         })
         .catch(error => {
-            console.log(error)
             dispatch(loginFailed(error))
         })
     }

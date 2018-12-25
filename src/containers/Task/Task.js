@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-import { Row, Col, Card, CardHeader, CardBody, CardTitle, Table } from "reactstrap";
-import { PanelHeader, CardData, Spinner, Tasks, Button } from "components";
-import Moment from 'react-moment';
-import moment from 'moment'
-import { connect } from 'react-redux';
+import { Row, Col, Card, CardHeader, CardBody, CardTitle } from "reactstrap";
+import { PanelHeader, Tasks } from "components";
 import AddTask from './AddTask';
-import * as actionCreators from "../../store/actions/task";
 
 
 class Task extends Component {

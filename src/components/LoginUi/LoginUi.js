@@ -2,7 +2,7 @@ import React from "react";
 import Spinner from "../Spinner/Spinner";
 import { Row, Col, Card, CardHeader, CardBody , Form, FormGroup, Label, Input, Button, Alert} from "reactstrap";
 import { PanelHeader } from "components";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 const LoginUi = ({emailHandler, passHandler, submit, loading, error, authRedirect}) => {
@@ -29,11 +29,6 @@ const LoginUi = ({emailHandler, passHandler, submit, loading, error, authRedirec
                         <span className ='d-flex justify-content-center'> The Email or Password is invalid </span>
                     </Alert>
     }
-    let RedirectAuth = ''
-    // if(token) {
-    //     RedirectAuth = <Redirect to = '/welcome'/>
-    //     console.log('hereerr')
-    // }
     return (
         <div>
         {authRedirect}

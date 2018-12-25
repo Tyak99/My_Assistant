@@ -1,5 +1,4 @@
 import * as actionTypes from "../constants/actionTypes";
-import moment from 'moment'
 
 const initialState = {
   thead: ["Name", "Amount"],
@@ -18,13 +17,6 @@ export const expense = (state = initialState, action) => {
         loading: true
       }
     case actionTypes.GET_EXPENSE_SUCCESS:
-     const Today = moment().format("DD/MM/YYYY")
-      const result = Object.values(action.data)
-      const newResult = (result) => {
-        if(result.createdAt == Today) {
-          return true
-        }
-      }
       return {
         ...state,
         loading: false,

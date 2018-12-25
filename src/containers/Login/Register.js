@@ -12,7 +12,6 @@ class Register extends Component {
     }
     emailInput = (e) => {
         this.setState({email: e.target.value})
-        console.log(this.state)
     }
     passInput = (e) => {
         this.setState({pass: e.target.value})
@@ -20,19 +19,33 @@ class Register extends Component {
     onSubmitHandler = (e) => {
         e.preventDefault()
         this.props.onRegister(this.state.email, this.state.pass, this.state.username)
-        console.log('submitted')
     }
     onUserInput = e => {
         this.setState({username: e.target.value})
     }
     render() {
+        let authRedirect;
+        if(this.props.token) {
+            authRedirect = <Redirect to='/welcome'/>
+        }
         return (
             <RegisterUi 
                 emailInput = {this.emailInput}
                 passInput = {this.passInput}
                 usernameInput = {this.onUserInput}
-                submit = {this.onSubmitHandler}/>
+                submit = {this.onSubmitHandler}
+                error = {this.props.error}
+                loading = {this.props.loading}
+                authRedirect = {authRedirect}/>
         )
+    }
+}
+
+const mapStateToProps = (state) => {
+    return {
+        error: state.auth.error,
+        loading: state.auth.loading,
+        token: state.auth.token
     }
 }
 
@@ -43,4 +56,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

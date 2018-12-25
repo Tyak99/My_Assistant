@@ -10,7 +10,7 @@ const initialState = {
 
 export const auth = (state= initialState, action) => {
     switch(action.type) {
-        case actionTypes.LOGIN_START:
+        case actionTypes.AUTH_START:
             return {
                 ...state,
                 loading: true
@@ -36,6 +36,13 @@ export const auth = (state= initialState, action) => {
                 ...state,
                 token: null,
                 id: null
+            }
+        case actionTypes.REGISTER_FAILED:
+            return {
+                ...state,
+                token: null,
+                loading: false,
+                error: action.error,
             }
         default:
             return state

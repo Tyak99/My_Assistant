@@ -5,8 +5,6 @@ import { PanelHeader, CardData, Emoji } from "components";
 import { Link } from 'react-router-dom'
 import "./Welcome.css";
 import * as actions from '../../store/actions/general'
-import * as authActions from '../../store/actions/auth'
-import TestInput from "../../components/TestInput/TestInput";
 class Welcome extends Component {
     state = {
         datas: [
