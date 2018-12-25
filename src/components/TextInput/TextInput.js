@@ -18,6 +18,7 @@ const TextInput = ({Aname, Aamount, submitH, select}) => {
                 <option value="Miscellaneous">Miscellaneous</option>
             </select>
         </div>
+            <form onSubmit={submitH}>
             <InputGroup>
                 <Input placeholder="name" onChange = {Aname}/>
             </InputGroup>
@@ -26,7 +27,8 @@ const TextInput = ({Aname, Aamount, submitH, select}) => {
                     <Input placeholder="Amount" type="number" step="1" onChange = {Aamount}/>
                 <InputGroupAddon addonType="append">.00</InputGroupAddon>
             </InputGroup>
-            <Button color="primary" round onClick = {submitH}>Submit</Button>
+            <Button color="primary" round>Submit</Button>
+            </form>
         </div>
     )
 }

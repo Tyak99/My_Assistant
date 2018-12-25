@@ -20,7 +20,8 @@ class AddT extends Component {
     onSelectName = (e) => {
         this.setState({value: e.target.value})
     }
-    onSubmitHandler = () => {
+    onSubmitHandler = (e) => {
+        e.preventDefault()
         if(this.state.name.length <= 0 || this.state.amount.length <= 0 || this.state.value == 'Choose') {
             return 
         }

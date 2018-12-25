@@ -89,14 +89,14 @@ export const login = (email, password) => {
             const token = response.data.idToken
             const id = response.data.localId
             const username = response.data.displayName
-            const expiresIn = response.data.expiresIn
+            const expiryTime = new Date(new Date().getTime() + response.data.expiresIn * 1000)
             dispatch(loginSuccess(token, id, username))
             dispatch(checkAuthTimeout(response.data.expiresIn))
             //save token and id to localstorage
             localStorage.setItem('token', token)
             localStorage.setItem('id', id)
             localStorage.setItem('username', username)
-            localStorage.setItem('expiresIn', expiresIn)
+            localStorage.setItem('expirationDate', expiryTime)
         })
         .catch(error => {
             console.log(error)
@@ -109,7 +109,7 @@ export const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('id');
     localStorage.removeItem('username');
-    localStorage.removeItem('expiresIn');
+    localStorage.removeItem('expirationDate')
 
     return {
         type: actionTypes.LOGOUT
@@ -121,13 +121,14 @@ export const checkAuthState = () => {
         const token = localStorage.getItem('token');
         const id = localStorage.getItem('id');
         const username = localStorage.getItem('username')
-        const expiresIn = localStorage.getItem('expiresIn')
+        const expirationDate = new Date(localStorage.getItem('expirationDate'))
         if(!token || !id) {
             dispatch(logout())
+        } else if (new Date() > expirationDate) {
+            dispatch(logout())
         } else {
-            // dispatch(getUserInfo(token))
             dispatch(loginSuccess(token, id, username))
-            dispatch(checkAuthTimeout(expiresIn))
+            dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime()) / 1000))
         }
     }
 }

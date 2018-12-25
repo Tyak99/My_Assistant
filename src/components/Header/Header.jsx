@@ -149,7 +149,7 @@ class Header extends React.Component {
           >
             <form>
               <InputGroup className="no-border">
-                <Input placeholder="Search..." />
+                <Input placeholder="Search..."/>
                 <InputGroupAddon addonType="append">
                   <InputGroupText>
                     <i className="now-ui-icons ui-1_zoom-bold" />
@@ -159,7 +159,7 @@ class Header extends React.Component {
             </form>
             <Nav navbar>
               <NavItem>
-                <Link to="#pablo" className="nav-link">
+                <Link to="#" className="nav-link">
                   <i className="now-ui-icons media-2_sound-wave" />
                   <p>
                     <span className="d-lg-none d-md-block">Stats</span>
@@ -184,7 +184,7 @@ class Header extends React.Component {
                 </DropdownMenu>
               </Dropdown> */}
               <NavItem>
-                <Link to="#pablo" className="nav-link">
+                <Link to="#" className="nav-link">
                   <i className="now-ui-icons users_single-02" />
                   <p>
                     <span className="d-lg-none d-md-block">Account</span>

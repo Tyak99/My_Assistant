@@ -57,7 +57,7 @@ class Sidebar extends React.Component {
                 <li
                   className={
                     this.activeRoute(prop.path) +
-                    (prop.pro ? " active active-pro" : "")
+                    (prop.pro ? "active active-pro" : "")
                   }
                   key={key}
                 >
