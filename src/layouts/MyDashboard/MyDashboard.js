@@ -51,7 +51,7 @@ class MyDashboard extends Component {
             {
               path: "/welcome",
               name: "Welcome",
-              icon: "ui-1_bell-53",
+              icon: "design_app",
               component: Welcome
             },
             {
@@ -67,13 +67,13 @@ class MyDashboard extends Component {
                 {
                     path: "/welcome",
                     name: "Welcome",
-                    icon: "ui-1_bell-53",
+                    icon: "design_app",
                     component: Welcome
                   },
                   {
                     path: "/dashboard",
                     name: "Today",
-                    icon: "design_app",
+                    icon: "arrows-1_minimal-down",
                     component: Today
                   },
                   {
@@ -92,7 +92,7 @@ class MyDashboard extends Component {
                   {
                     path: "/logout",
                     name: "Logout",
-                    icon: "design-2_ruler-pencil",
+                    icon: "ui-1_simple-remove",
                     component: Logout
                   },
             ]
