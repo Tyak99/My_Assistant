@@ -1,12 +1,8 @@
-import Notifications from "views/Notifications/Notifications.jsx";
 import Icons from "views/Icons/Icons.jsx";
 import Welcome from "../containers/Welcome/Welcome";
 import Today from "../containers/Today/Today";
 import Typography from "views/Typography/Typography.jsx";
 import TableList from "views/TableList/TableList.jsx";
-import Maps from "views/Maps/Maps.jsx";
-import Upgrade from "views/Upgrade/Upgrade.jsx";
-import UserPage from "views/UserPage/UserPage.jsx";
 import Login from "../containers/Login/Login";
 
 var dashRoutes = [
@@ -23,12 +19,6 @@ var dashRoutes = [
     component: Today
   },
   { path: "/icons", name: "Icons", icon: "design_image", component: Icons },
-  {
-    path: "/user-page",
-    name: "User Profile",
-    icon: "users_single-02",
-    component: UserPage
-  },
   {
     path: "/extended-tables",
     name: "Table List",

@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Card, CardHeader, CardBody } from "reactstrap";
+import { Row, Col, Card, CardBody } from "reactstrap";
 import "./CardData.css";
 const CardData = ({name, value, icon}) => {
     return (

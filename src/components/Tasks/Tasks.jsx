@@ -1,11 +1,11 @@
 import React from "react";
-import { UncontrolledTooltip, FormGroup, Input, Label } from "reactstrap";
+import { UncontrolledTooltip} from "reactstrap";
 // used for making the prop types of this component
 import PropTypes from "prop-types";
 import * as actionCreators from "../../store/actions/task";
 import { connect } from 'react-redux';
 
-import { Button, Checkbox } from "components";
+import { Button } from "components";
 
 class Task extends React.Component {
   state = {

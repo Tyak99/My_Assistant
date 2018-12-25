@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import { Row, Col, Card, CardHeader, CardBody, CardTitle, Table } from "reactstrap";
-import { PanelHeader, CardData, Spinner } from "components";
-import Moment from 'react-moment';
-import moment from 'moment'
+import { PanelHeader } from "components";
 import AddT from "../Add/Add";
 import { connect } from 'react-redux';
-import { thead, tbody } from "variables/general";
 import * as actionCreators from "../../store/actions/actions";
 
 class Today extends Component {
