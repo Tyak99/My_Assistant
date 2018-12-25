@@ -6,15 +6,14 @@ import PerfectScrollbar from "perfect-scrollbar";
 import * as authActions from '../../store/actions/auth'
 
 
-import Icons from "views/Icons/Icons.jsx";
 import Welcome from "../../containers/Welcome/Welcome";
 import Today from "../../containers/Today/Today";
-import UserPage from "views/UserPage/UserPage.jsx";
 import Login from "../../containers/Login/Login";
 import Task from '../../containers/Task/Task';
 import Logout from "../../containers/Login/Logout";
 import Register from '../../containers/Login/Register';
 import NotFoundPage from "../../components/NotFound/NotFoundPage";
+import Footer from "../../components/Footer/Footer";
 
 
 var ps;
@@ -78,13 +77,6 @@ class MyDashboard extends Component {
                     icon: "ui-1_bell-53",
                     component: Task
                   },
-                  { path: "/icons", name: "Icons", icon: "design_image", component: Icons },
-                  {
-                    path: "/user-page",
-                    name: "User Profile",
-                    icon: "users_single-02",
-                    component: UserPage
-                  },
                   {
                     pro: true,
                     path: "/logout",
@@ -109,8 +101,6 @@ class MyDashboard extends Component {
                     <Route path ='/welcome' exact component = {Welcome}/>
                     <Route path ='/dashboard' component = {Today}/>
                     <Route path ='/task' component = {Task}/>
-                    <Route path = '/icons'component = {Icons}/>
-                    <Route path = '/user-page'component = {UserPage}/>
                     <Route path = '/login' component = {Login}/>
                     <Route path = '/register' component = {Register}/>
                     <Route path ='/logout' component = {Logout}/>
@@ -124,6 +114,7 @@ class MyDashboard extends Component {
                 <div className="main-panel" ref="mainPanel">
                 <Header {...this.props}/>
                 {route}
+                <Footer/>
             </div>
             </div>
         )

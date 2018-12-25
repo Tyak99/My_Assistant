@@ -1,7 +1,3 @@
-import CardAuthor from './CardElements/CardAuthor';
-import CardCategory from './CardElements/CardCategory';
-import CardSocials from './CardElements/CardSocials';
-
 import Button from './CustomButton/CustomButton';
 
 import Checkbox from './CustomCheckbox/SimpleCheckbox';
@@ -20,8 +16,6 @@ import PanelHeader from './PanelHeader/PanelHeader';
 
 import Sidebar from './Sidebar/Sidebar';
 
-import Stats from './Stats/Stats';
-
 import Tasks from './Tasks/Tasks';
 
 import TextInput from './TextInput/TextInput';
@@ -31,10 +25,6 @@ import Spinner from "./Spinner/Spinner";
 import Emoji from "./Emoji/Emoji";
 
 export {
-    // CardElements
-    CardAuthor,
-    CardCategory,
-    CardSocials,
     //Input
     TextInput,
     // CardData
@@ -55,8 +45,6 @@ export {
     PanelHeader,
     // Sidebar
     Sidebar,
-    // Stats
-    Stats,
     // Tasks
     Tasks,
     //Spinner
