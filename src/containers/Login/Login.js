@@ -23,10 +23,11 @@ class Login extends Component {
     componentDidMount() {
         console.log(this.props.history)
     }
-    componentWillUnmount() {
-        this.props.history.push('/welcome')
-    }
     render() {
+        let authRedirect;
+        if(this.props.token) {
+            authRedirect = <Redirect to='/welcome'/>
+        }
         return (
             <div>
                 <LoginUi
@@ -34,7 +35,8 @@ class Login extends Component {
                     emailHandler = {this.emailHandler} 
                     passHandler = {this.passHandler} 
                     submit ={this.SubmitHandler}
-                    loading={this.props.loading}/>
+                    loading={this.props.loading}
+                    authRedirect = {authRedirect}/>
             </div>
         )
     }
@@ -44,6 +46,7 @@ const mapStateToProps = (state) => {
     return {
         loading: state.auth.loading,
         error: state.auth.error,
+        token: state.auth.token !== null
     }
 }
 

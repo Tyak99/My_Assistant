@@ -91,16 +91,18 @@ class MyDashboard extends Component {
                     component: UserPage
                   },
                   {
+                    pro: true,
                     path: "/logout",
                     name: "Logout",
                     icon: "ui-1_simple-remove",
                     component: Logout
                   },
+                  { redirect: true, path: "/", pathTo: "/welcome", name: "Dashboard" }
             ]
         }
         let route = (
             <Switch>
-                <Route path ='/welcome' component = {Welcome}/>
+                <Route path ='/welcome' exact component = {Welcome}/>
                 <Route path = '/login' component = {Login}/>
                 <Route path = '/register' component = {Register}/>
                 <Route component={NotFoundPage}/>
@@ -109,11 +111,12 @@ class MyDashboard extends Component {
         if(this.props.isAuthenticated) {
             route = (
                 <Switch>
-                    <Route path ='/welcome' component = {Welcome}/>
+                    <Route path ='/welcome' exact component = {Welcome}/>
                     <Route path ='/dashboard' component = {Today}/>
                     <Route path ='/task' component = {Task}/>
                     <Route path = '/icons'component = {Icons}/>
                     <Route path = '/user-page'component = {UserPage}/>
+                    <Route path = '/login' component = {Login}/>
                     <Route path ='/logout' component = {Logout}/>
                     <Route component = {NotFoundPage}/>
                 </Switch>

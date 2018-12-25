@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from "reactstrap";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 const NotFoundPage = ({location}) => {
     let actionTo = (
@@ -16,7 +16,9 @@ const NotFoundPage = ({location}) => {
                 <Link to = '/login'><Button onClick = {console.log('hh')}> LogIn or Register </Button></Link>
             </div>
         )
-    }   
+    } else if(location.pathname == '/') {
+        actionTo = <Redirect to ='/welcome'/>
+    }
     return (
         <div style={{textAlign: 'center', marginTop: '50px'}}>
             <h2> 404. Page Not Found </h2>
