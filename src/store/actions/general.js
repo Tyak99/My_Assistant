@@ -19,11 +19,9 @@ export const quote = () => {
     return dispatch => {
         axios.get('http://quotes.rest/qod.json')
         .then(response => {
-            console.log(response.data.contents.quotes[0])
             dispatch(getQuote(response.data.contents.quotes[0]))
         })
         .catch(error => {
-            console.log(error)
         })
     }
 }
@@ -42,10 +40,8 @@ export const getLocation = () => {
             const mylocation = `${response.data.city}, ${response.data.country_name}`
             dispatch(location(mylocation))
             localStorage.setItem('location', mylocation)
-            console.log(mylocation)
         })
         .catch(error => {
-            console.log(error)
         })
     }
 }

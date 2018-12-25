@@ -20,11 +20,6 @@ class Today extends Component {
         let data = null;
         if(this.props.tbody) {
             data = this.props.tbody.map((prop) => {
-                // const Today = moment().format("DD/MM/YYYY")
-                // let day = prop.createdAt
-                // if(prop.createdAt == Today) {
-                //     day = "Today"
-                // }
                return (
                 <tr key = {prop.timestamp}>  
                     <td ><strong className = "h6">  {prop.value} </strong> 
@@ -54,15 +49,6 @@ class Today extends Component {
                                     <Table responsive>
                                         <thead className="text-primary">
                                             <tr>
-                                              {/* {this.props.theader.map((prop, key) => {
-                                                  if (key === thead.length - 1)
-                                                  return (
-                                                    <th key={key} className="text-right">
-                                                      {prop}
-                                                    </th>
-                                                  );
-                                                  return <th> {prop} </th>
-                                              })}   */}
                                               <th> Name </th>
                                               <th className = 'text-right'> Amount </th>
                                             </tr>

@@ -40,13 +40,6 @@ class AddT extends Component {
         this.setState({name: ''})
         this.setState({amount: ''}) 
     }
-    componentDidMount() {
-        console.log("hii")
-        console.log(this.state.value)
-    }
-    componentDidUpdate() {
-        console.log(this.state.value)
-    }
     render() {
         let Display = <TextInput
         select = {this.onSelectName}

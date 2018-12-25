@@ -24,24 +24,14 @@ export const addExpFailed = (error) => {
 }
 export const add = (expense, token, userId) => {
     return dispatch => {
-        
-        // const expense = {
-        //     name: name,
-        //     amount: amount,
-        //     value: value,
-        //     timestamp: new Date().getTime(),
-        //     createdAt: moment().format("DD/MM/YYYY")
-        //         }
         dispatch(addStart())
         axios.post(`${ExpenseApiUrl}${token}`, expense) 
         .then(response => {
-            console.log(response)
             dispatch(addExpSuccess(response.data))
             dispatch(getExp(token, userId))
         })
         .catch(error => {
             dispatch(addExpFailed(error))
-            console.log(error)
         })
     }
    
@@ -81,11 +71,9 @@ export const getExp = (token, userId) => {
                 const filteredResult = result.filter(newResult)
                 //sort expenses to show new expenses first
                 const sortedArray = filteredResult.sort((a,b) => b.timestamp - a.timestamp)
-                console.log(sortedArray)
                 dispatch(getExpSuccess(sortedArray))
             })
             .catch(error => {
-                console.log(error)
                 dispatch(getExpFailed(error))
             })
     }

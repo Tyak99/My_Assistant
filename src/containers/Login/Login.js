@@ -20,9 +20,6 @@ class Login extends Component {
         this.props.onSubmitH(this.state.email, this.state.password)
         // this.props.history.push('/welcome')
     }
-    componentDidMount() {
-        console.log(this.props.history)
-    }
     render() {
         let authRedirect;
         if(this.props.token) {

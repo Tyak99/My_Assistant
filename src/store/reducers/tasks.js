@@ -14,7 +14,6 @@ export const tasks = (state=initialState, action) => {
                 ...state,
             }
         case actionTypes.GET_TASK_SUCCESS:
-        // const result = Object.values(action.data)
             return {
                 ...state,
                 tasks: action.data

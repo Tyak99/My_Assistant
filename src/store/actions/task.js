@@ -31,11 +31,9 @@ export const task = (token, userId) => {
             const data = Object.values(response.data)
             //sort the array by timestamp. so the latest data can be at the top
             const sortedArray = data.sort((a,b) => b.timestamp - a.timestamp)
-            console.log(sortedArray)
             dispatch(getTaskSuccess(sortedArray))
         })
         .catch(error => {
-            console.log(error)
             dispatch(getTaskFailed(error))
         })
     }
@@ -64,12 +62,10 @@ export const add = (userId, taskData, token) => {
         dispatch(addTask())
         axios.put(Url, taskData)
         .then(response => {
-            console.log(response.data)
             dispatch(task(token, userId))
              dispatch(addTaskSuccess(response.data))
         })
         .catch(error => {
-            console.log(error)
         })
     }
 }
@@ -86,7 +82,6 @@ export const rem = (userId, timestamp, token) => {
         dispatch(removeTask(timestamp))
         axios.delete(Url)
         .then(response => {
-            console.log('done')
         })
     }
 }

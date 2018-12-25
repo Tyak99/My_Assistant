@@ -22,39 +22,6 @@ class Task extends React.Component {
     }
   }
   render() {
-    
-    // for (var i = 0; i < this.props.tasks.length; i++) {
-    //   number = "checkbox" + i;
-    //   edit = "edit" + i;
-    //   remove = "remove" + i;
-    //   tasksList.push(
-    //     <tr key={i}>
-    //       <td>
-    //         <Checkbox
-    //           inputProps={{
-    //             value: number,
-    //             defaultChecked: this.props.tasks[i].checked
-    //           }}
-    //         />
-    //       </td>
-    //       <td className="text-left">{this.props.tasks[i].text}</td>
-    //       <td className="td-actions text-right">
-    //         <Button id={edit} round icon iconMini neutral color="info">
-    //           <i className="now-ui-icons ui-2_settings-90" />
-    //         </Button>
-    //         <UncontrolledTooltip placement="top" target={edit} delay={0}>
-    //           Edit Task
-    //         </UncontrolledTooltip>
-    //         <Button id={remove} round icon iconMini neutral color="danger"  onClick = {() => removeButton(this.id)}>
-    //           <i className="now-ui-icons ui-1_simple-remove" />
-    //         </Button>
-    //         <UncontrolledTooltip placement="top" target={remove} delay={0}>
-    //           Remove
-    //         </UncontrolledTooltip>
-    //       </td>
-    //     </tr>
-    //   );
-    // }
     let data = null
     if(this.props.tasks) {
         data = this.props.tasks.map((task, i) => {

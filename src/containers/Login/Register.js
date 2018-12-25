@@ -12,7 +12,6 @@ class Register extends Component {
     }
     emailInput = (e) => {
         this.setState({email: e.target.value})
-        console.log(this.state)
     }
     passInput = (e) => {
         this.setState({pass: e.target.value})
@@ -20,7 +19,6 @@ class Register extends Component {
     onSubmitHandler = (e) => {
         e.preventDefault()
         this.props.onRegister(this.state.email, this.state.pass, this.state.username)
-        console.log('submitted')
     }
     onUserInput = e => {
         this.setState({username: e.target.value})

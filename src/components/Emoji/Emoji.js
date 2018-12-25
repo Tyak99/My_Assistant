@@ -12,14 +12,6 @@ import "./EmojiHold.css"
 class Emoji extends Component {
     state = {
         emojis: [
-            {symbol: <i  className="fa fa-smile-wink fa-3x"></i>, label: 'smile' },
-            {symbol: <i  className="fa fa-grin-hearts fa-3x"></i>, label: 'grin' },
-            {symbol: <i className="fa fa-angry fa-3x"></i> , label: 'angry'},
-            {symbol: <i className="fa fa-frown fa-3x"></i>, label: 'frown'},
-            {symbol: <i className="fa fa-tired fa-3x"></i>, label: 'tired'},
-        ],
-        
-        emojis2: [
             {symbol: <img src={love} alt='' height="50" width="50"/>, label: 'love' },
             {symbol: <img src={smile} alt='' height="50" width="50"/>, label: 'smile' },
             {symbol: <img src={angry} alt='' height="50" width="50"/> , label: 'angry'},
@@ -28,15 +20,11 @@ class Emoji extends Component {
         ],
         mood: null
     }
-    // onClickHandler = (label) => {
-    //     Display = <h5> </h5>
-    // }
-
     render() {
         const clickHandler = (label) => {
             this.setState({mood: label})
         }
-        let Display = this.state.emojis2.map(emoji => {
+        let Display = this.state.emojis.map(emoji => {
             return  <EmojiHold key = {emoji.label} symbol = {emoji.symbol} click = {() => clickHandler(emoji.label)}/>
         })
         if(this.state.mood !== null) {

@@ -29,10 +29,8 @@ export const register  = (email, password, username) => {
             dispatch(registerSuccess())
             dispatch(loginSuccess(response.data.idToken, response.data.localId, username))
             dispatch(userInfo(username, response.data.idToken))
-            console.log(response)
         })
         .catch(error => {
-            console.log(error)
         })
     }
 }
@@ -47,10 +45,9 @@ export const userInfo = (username, token) => {
     return dispatch => {
         axios.post(SetDisplayName, userData)
         .then(response => {
-            console.log('From the userInfo' + response)
+
         })
         .catch(error => {
-            console.log("From the userInfo" + error)
         })
     }
 }
@@ -85,7 +82,6 @@ export const login = (email, password) => {
         dispatch(loginStart())
         axios.post(LoginApi, authData)
         .then(response => {
-            console.log(response)
             const token = response.data.idToken
             const id = response.data.localId
             const username = response.data.displayName
@@ -99,7 +95,6 @@ export const login = (email, password) => {
             localStorage.setItem('expirationDate', expiryTime)
         })
         .catch(error => {
-            console.log(error)
             dispatch(loginFailed(error))
         })
     }
