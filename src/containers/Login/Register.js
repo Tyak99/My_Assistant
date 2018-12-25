@@ -24,13 +24,28 @@ class Register extends Component {
         this.setState({username: e.target.value})
     }
     render() {
+        let authRedirect;
+        if(this.props.token) {
+            authRedirect = <Redirect to='/welcome'/>
+        }
         return (
             <RegisterUi 
                 emailInput = {this.emailInput}
                 passInput = {this.passInput}
                 usernameInput = {this.onUserInput}
-                submit = {this.onSubmitHandler}/>
+                submit = {this.onSubmitHandler}
+                error = {this.props.error}
+                loading = {this.props.loading}
+                authRedirect = {authRedirect}/>
         )
+    }
+}
+
+const mapStateToProps = (state) => {
+    return {
+        error: state.auth.error,
+        loading: state.auth.loading,
+        token: state.auth.token
     }
 }
 
@@ -41,4 +56,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

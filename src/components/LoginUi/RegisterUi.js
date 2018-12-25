@@ -4,8 +4,13 @@ import { PanelHeader } from "components";
 import Spinner from "../Spinner/Spinner";
 
 
-const RegisterUi = ({emailInput, passInput, usernameInput ,submit}) => {
-    let ErrorMessage = <div> </div>
+const RegisterUi = ({emailInput, passInput, usernameInput ,submit, error, loading, authRedirect}) => {
+    let ErrorMessage = <div> </div>;
+    if(error) {
+        ErrorMessage = <Alert color="info">
+                        <span className ='d-flex justify-content-center'> {error} </span>
+                    </Alert>
+    }
     let Display =  (
                     <Form onSubmit = {submit}>
                          <FormGroup>
@@ -24,22 +29,20 @@ const RegisterUi = ({emailInput, passInput, usernameInput ,submit}) => {
                      </Form>
     )
 
-    // if(loading) {
-    //     Display = <div> <Spinner/> </div>
-    // }
-    // if(error) {
-    //     ErrorMessage = <Alert color="info">
-    //                     <span className ='d-flex justify-content-center'> The Email or Password is invalid </span>
-    //                 </Alert>
-    // }
+    if(loading) {
+        Display = <div> <Spinner/> </div>
+    }
+   
     return (
         <div> 
+            {authRedirect}
             <PanelHeader size="sm" />
             <div className="content">
             <Row>
                 <Col md = {8} xs = {12}>
                 <Card>
                     <CardHeader>Register</CardHeader>
+                    {ErrorMessage}
                     <CardBody> 
                         {Display}
                     </CardBody>

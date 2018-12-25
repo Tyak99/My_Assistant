@@ -112,6 +112,7 @@ class MyDashboard extends Component {
                     <Route path = '/icons'component = {Icons}/>
                     <Route path = '/user-page'component = {UserPage}/>
                     <Route path = '/login' component = {Login}/>
+                    <Route path = '/register' component = {Register}/>
                     <Route path ='/logout' component = {Logout}/>
                     <Route component = {NotFoundPage}/>
                 </Switch>
