@@ -70,7 +70,7 @@ class Task extends React.Component {
                     <UncontrolledTooltip placement="top" target={edit} delay={0}>
                       Edit Task
                     </UncontrolledTooltip>
-                    <Button id={remove} round icon iconMini neutral color="danger" onClick = {() => this.props.rm(task.id)}>
+                    <Button id={remove} round icon iconMini neutral color="danger" onClick = {() => this.props.rm(this.props.userId, task.timestamp, this.props.token)}>
                       <i className="now-ui-icons ui-1_simple-remove" />
                     </Button>
                     <UncontrolledTooltip placement="top" target={remove} delay={0}>
@@ -103,7 +103,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    rm: (id) => dispatch(actionCreators.removeTask(id)),
+    rm: (userId, timestamp, token) => dispatch(actionCreators.rem(userId, timestamp, token)),
     getTask: (token, userId) => dispatch(actionCreators.task(token, userId))
   }
 }

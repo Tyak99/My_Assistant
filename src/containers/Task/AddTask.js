@@ -23,13 +23,11 @@ class AddTask extends Component {
         }
         const taskData = {
             text: this.state.taskInput,
-            id: Math.random(),
-            userId: this.props.userId
+            timestamp: new Date().getTime(),
+            id: Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 7),
         }
-        this.props.addTask(taskData, this.props.token, this.props.userId)
-    }
-    componentDidUpdate() {
-        console.log(this.state)
+        // this.props.addTask(taskData, this.props.token, this.props.userId)
+        this.props.addTask(this.props.userId, taskData, this.props.token)
     }
     render() {
         let Display =  (
@@ -52,7 +50,6 @@ class AddTask extends Component {
                     </InputGroup>
                     <Button color="primary" round = 'true' >Submit</Button>
                     </form>
-                    
                 </div>
             )
         }    
@@ -75,7 +72,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addTask: (taskData, token, userId) => dispatch(actionCreators.add(taskData, token, userId))
+        // addTask: (taskData, token, userId) => dispatch(actionCreators.add(taskData, token, userId)),
+        addTask: (userId, taskData, token) => dispatch(actionCreators.add(userId, taskData, token))
     }
 }
 

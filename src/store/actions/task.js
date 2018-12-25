@@ -23,12 +23,16 @@ export const getTaskFailed = (error) => {
 
 export const task = (token, userId) => {
     return dispatch => {
-        const Url = `${TaskApi}${token}&orderBy="userId"&equalTo="${userId}"` 
+        const Url = `${TaskApi}/${userId}.json?auth=${token}`
         dispatch(getTask())
         axios.get(Url)
         .then(response => {
-            console.log(response.data)
-            dispatch(getTaskSuccess(response.data))
+            //recieve the response of tasks in the database as object and convert it to array
+            const data = Object.values(response.data)
+            //sort the array by timestamp. so the latest data can be at the top
+            const sortedArray = data.sort((a,b) => b.timestamp - a.timestamp)
+            console.log(sortedArray)
+            dispatch(getTaskSuccess(sortedArray))
         })
         .catch(error => {
             console.log(error)
@@ -54,26 +58,35 @@ export const addTaskFailed = (error) => {
         error
     }
 }
-export const add = (taskData, token, userId) => {
+export const add = (userId, taskData, token) => {
     return dispatch => {
-        const Url = `${TaskApi}${token}`
+        const Url = `${TaskApi}/${userId}/${taskData.timestamp}.json?auth=${token}`
         dispatch(addTask())
-        axios.post(Url, taskData)
+        axios.put(Url, taskData)
         .then(response => {
-            console.log(response)
+            console.log(response.data)
             dispatch(task(token, userId))
-            dispatch(addTaskSuccess(response.data))
+             dispatch(addTaskSuccess(response.data))
         })
         .catch(error => {
             console.log(error)
-            dispatch(addTaskFailed(error))
         })
     }
-   
 }
 export const removeTask = (index) => {
     return {
         type: actionTypes.REMOVE_TASK,
         index: index
+    }
+}
+
+export const rem = (userId, timestamp, token) => {
+    return dispatch => {
+        const Url = `${TaskApi}${userId}/${timestamp}.json?auth=${token}`
+        dispatch(removeTask(timestamp))
+        axios.delete(Url)
+        .then(response => {
+            console.log('done')
+        })
     }
 }
