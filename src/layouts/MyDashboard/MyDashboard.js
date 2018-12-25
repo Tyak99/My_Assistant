@@ -19,6 +19,7 @@ import Login from "../../containers/Login/Login";
 import Task from '../../containers/Task/Task';
 import Logout from "../../containers/Login/Logout";
 import Register from '../../containers/Login/Register';
+import NotFoundPage from "../../components/NotFound/NotFoundPage";
 
 
 var ps;
@@ -102,11 +103,9 @@ class MyDashboard extends Component {
                 <Route path ='/welcome' component = {Welcome}/>
                 <Route path = '/login' component = {Login}/>
                 <Route path = '/register' component = {Register}/>
-                <Redirect to = '/welcome'/>
+                <Route component={NotFoundPage}/>
             </Switch>
         )
-        //I AM TRYING TO WORK ON THE ROUTING... SO THAT IT RETURNS TO A SPECIFIC ROUTE WHEN USER GOES TO A ROUTE
-        //THAT DOESNT EXIST.
         if(this.props.isAuthenticated) {
             route = (
                 <Switch>
@@ -116,8 +115,7 @@ class MyDashboard extends Component {
                     <Route path = '/icons'component = {Icons}/>
                     <Route path = '/user-page'component = {UserPage}/>
                     <Route path ='/logout' component = {Logout}/>
-                    {/* <Route component = {Typography}/> */}
-                    <Redirect to = '/welcome'/>
+                    <Route component = {NotFoundPage}/>
                 </Switch>
             )
         }

@@ -23,6 +23,9 @@ class Login extends Component {
     componentDidMount() {
         console.log(this.props.history)
     }
+    componentWillUnmount() {
+        this.props.history.push('/welcome')
+    }
     render() {
         return (
             <div>
